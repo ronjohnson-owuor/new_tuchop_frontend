@@ -1,0 +1,59 @@
+"use client"
+import { topic, topicStructure } from '@/interface/interface'
+import { postNoObjectReturn } from '@/modules/endpoint';
+import React, { useEffect, useState } from 'react'
+import Topic from './Topic';
+import Loading from './Loading';
+import { nohistory } from '../container';
+import Link from 'next/link';
+import Image from 'next/image';
+
+function Lesson() {
+	
+	const [topic,setTopic] = useState<topicStructure[]|null>(null);
+	const [showNoLesson, setshowNoLesson] = useState(false);
+	useEffect(()=>{
+		const res = postNoObjectReturn("saved-topics",true) as Promise<topic>;
+		res.then(data =>{
+			if(data.data.length != 0){
+				setTopic(data.data);
+			}
+		});
+	},[]);
+	
+	setTimeout(() => {
+	  setshowNoLesson(true);
+	}, 20000);
+	
+	
+	
+	
+  return (
+	<div>
+		{topic === null &&
+		 <div>
+			{!showNoLesson ? (
+				<Loading />
+          ) : (
+            <div className='grid place-items-center mt-10'>
+              <Image
+                className="w-[200px] h-[200px]"
+                src={nohistory}
+                alt="topic not found"
+              />
+              <span className="text-sm">
+                no topic found,create topic
+                <Link className="text-primary underline" href="/">
+                  here
+                </Link>
+              </span>
+            </div>
+          )}
+			
+		</div>}
+		{topic !== null && <Topic topics={topic}/>}
+	</div>
+  )
+}
+
+export default Lesson
