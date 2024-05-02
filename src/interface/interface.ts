@@ -123,9 +123,16 @@ interface AIformartResponse{
 	token:boolean
 }
 
+interface focusInterface {
+	url:string,
+	id:number,
+	question:string
+}
+
 
 export type {
 	TopicInterface,
+	focusInterface,
 	saveLessonInterface,
 	userdata,
 	data,

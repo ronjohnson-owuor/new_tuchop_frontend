@@ -1,4 +1,4 @@
-import { AIconversationResponse, savedChatsIdentifier, savedDataInterface, savedconvoInterface, topicList } from '@/interface/interface'
+import { AIconversationResponse, focusInterface, savedChatsIdentifier, savedDataInterface, savedconvoInterface, topicList } from '@/interface/interface'
 import { postObjectNoReturn, postObjectReturn } from '@/modules/endpoint';
 import React, { useEffect, useState } from 'react'
 import Controls from './Controls';
@@ -22,12 +22,13 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 	  const[topiclist,settopiclist] = useState<(string|number)[]|null>(null);
 	const [savedchats,setsavedchats] = useState<savedDataInterface[]|[]>([]);
 	const [aireply,setaireply] = useState<AIconversationResponse[]|[]>([]);
+	const[mediafocus,setmediafocus] = useState<focusInterface|null>(null);
 	const[phrase,setPhrase] = useState("");
 	const[wantVideo,setwantVideo]  = useState({
 		istrue:false,
 		index:0
 	});
-
+	
 	
 	useEffect(()=>{
 		if(id != null){
@@ -52,12 +53,7 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 		}
 	}
 	
-	
-	
-	
-	
-	
-	
+
 	// handle save conversation
 	const handleSave = (id:number) =>{
 		const dataToBeSaved = aireply[id];
@@ -138,6 +134,7 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 		}
 		{
 			showfile && <Filemanager
+			setmediafocus={setmediafocus}
 			topic_id={chatid.module_id!}
 			subtopic_id={focus}
 			close={setshowFiles}
@@ -146,6 +143,8 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 		
 		<Controls
 		setaireply={setaireply}
+		mediafocus={mediafocus}
+		setmediafocus={setmediafocus}
 		/>	
 	</div>
   )

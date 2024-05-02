@@ -6,9 +6,10 @@ import { RiCloseLine, RiFolder4Line, RiUpload2Line } from 'react-icons/ri';
 interface props{
 	close:Function,
   topic_id:number,
-  subtopic_id:number
+  subtopic_id:number,
+  setmediafocus:Function
 }
-function Filemanager({close,topic_id,subtopic_id}:props) {
+function Filemanager({close,topic_id,subtopic_id,setmediafocus}:props) {
   const [activeTab, setActiveTab] = useState('files');
 
   useEffect(() => {
@@ -40,7 +41,10 @@ function Filemanager({close,topic_id,subtopic_id}:props) {
 		  className='shadow-sm flex items-center text-md w-[80px] h-[30px] border -translate-y-1 hover:bg-primary hover:text-dText p-2 rounded border-lSecondary text-lText dark:border-dSecondary mx-4 dark:text-dText'><RiCloseLine/> &nbsp; close</button>
         </div>
         <div className="mt-4">
-          {activeTab === 'files' && <Listfiles topic_id={topic_id}/>}
+          {activeTab === 'files' && <Listfiles
+          close={close}
+          setmediafocus={setmediafocus}
+           topic_id={topic_id}/>}
           {activeTab === 'upload' 
           && 
           <Uploadfiles

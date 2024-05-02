@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { RiFilePaper2Line, RiFolder3Line, RiListOrdered2, RiMenu3Line, RiUpload2Line } from 'react-icons/ri'
 import Main from './Main'
+import Link from 'next/link';
 
 
 
@@ -44,12 +45,9 @@ function Lesson({id}:props) {
 			 className='w-[80%] mx-[10%] flex items-center justify-center gap-2 my-4'>
 				<RiFolder3Line/><span>open files</span>
 			</button>
-			<button className='w-[80%] mx-[10%] flex items-center justify-center gap-2 my-4'>
+			<Link href='/create-notes' className='w-[80%] mx-[10%] flex items-center justify-center gap-2 my-4'>
 				<RiFilePaper2Line/><span>get notes</span>
-			</button>
-			<button className='w-[80%] mx-[10%] flex items-center justify-center gap-2 my-4'>
-				<RiUpload2Line/><span>upload file</span>
-			</button>
+			</Link>
 		</div>		
 	</div>
   )
