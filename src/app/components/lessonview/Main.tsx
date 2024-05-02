@@ -1,10 +1,11 @@
-import { AIconversationResponse, focusInterface, savedChatsIdentifier, savedDataInterface, savedconvoInterface, topicList } from '@/interface/interface'
+import { AIconversationResponse, focusInterface, savedChatsIdentifier, savedDataInterface, savedconvoInterface, topicList, videoMessage, youtubeVideoListFormart } from '@/interface/interface'
 import { postObjectNoReturn, postObjectReturn } from '@/modules/endpoint';
 import React, { useEffect, useState } from 'react'
 import Controls from './Controls';
 import { RiSave2Line, RiSearch2Line, RiYoutubeLine } from 'react-icons/ri';
 import Subtopic from './Subtopic';
 import Filemanager from './Filemanager';
+import Listvideo from './Listvideo';
 
 interface prop {
 	id:string,
@@ -19,9 +20,11 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 	const chatid :savedChatsIdentifier ={
 		module_id: id !=null ? Number(id):undefined,
 	  };
+	  const[videos,setvideos]  = useState<youtubeVideoListFormart[]| null>(null);
 	  const[topiclist,settopiclist] = useState<(string|number)[]|null>(null);
 	const [savedchats,setsavedchats] = useState<savedDataInterface[]|[]>([]);
 	const [aireply,setaireply] = useState<AIconversationResponse[]|[]>([]);
+	const[showphrase,setshowphrase] = useState(false);
 	const[mediafocus,setmediafocus] = useState<focusInterface|null>(null);
 	const[phrase,setPhrase] = useState("");
 	const[wantVideo,setwantVideo]  = useState({
@@ -46,8 +49,21 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 	
 	const getVideo = (id:number) =>{
 		if(phrase != ""){
-			const res = postObjectReturn("get-video",true,{index:id,phrase:phrase});
-			res.then(data =>console.log(data));
+			setwantVideo(prev =>({
+				...prev,
+				istrue: true
+			}));
+			const res = postObjectReturn("get-video",true,{index:id,phrase:phrase}) as Promise<videoMessage>;
+			res.then(data =>{
+				if(typeof(data) === 'object'){
+					setvideos(data.data);
+				}else{
+					setwantVideo({
+						istrue:!wantVideo.istrue,
+						index:wantVideo.index
+					})
+				}
+			});
 		}else{
 			alert("enter a search term");
 		}
@@ -94,15 +110,17 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 					onClick={()=>handleSave(id)}
 					><RiSave2Line/>&nbsp;save</button>
 					<button
-					onClick={()=>setwantVideo({
-						istrue:!wantVideo.istrue,
+					onClick={()=>{
+						setshowphrase(true);
+						setwantVideo(prev =>({
+						...prev,
 						index:id
-					})}
-					 className='flex items-center p-1 px-2 shadow-md hover:bg-primary hover:text-dText text-sm rounded-xl dark:border dark:border-dSecondary'><RiYoutubeLine/>&nbsp;{wantVideo.istrue && wantVideo.index == id ?"close":"watch"}</button>
+					}))}}
+					 className='flex items-center p-1 px-2 shadow-md hover:bg-primary hover:text-dText text-sm rounded-xl dark:border dark:border-dSecondary'><RiYoutubeLine/>&nbsp;{showphrase && wantVideo.index == id ?"close":"watch"}</button>
 				</div>
 			</div>
 			{/* get video box */}
-			<div className={` ${wantVideo.istrue && wantVideo.index == id ? ' flex opacity-100  backdrop-blur-md p-4  w-[90%] my-10 shadow-md  rounded-md' :' flex  opacity-0 collapse'} transition-all duration-500 linear flex-wrap items-center justify-around gap-4 `}>
+			<div className={` ${showphrase && wantVideo.index == id ? ' flex opacity-100  backdrop-blur-md p-4  w-[90%] my-10 shadow-md  rounded-md' :' flex  opacity-0 collapse'} transition-all duration-500 linear flex-wrap items-center justify-around gap-4 `}>
 				<input className='w-[70%] gap-4 h-[40px] bg-transparent border-gray border dark:border-dSecondary p-2 rounded-md'
 				onChange={(e)=>setPhrase(e.target.value)}
 				 type="text" placeholder='enter video name' />
@@ -140,6 +158,12 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 			close={setshowFiles}
 			/>
 		}
+		
+		{wantVideo.istrue && <Listvideo
+		setvideolist={setvideos}
+		close={setwantVideo}
+		videolist={videos}
+		/>}
 		
 		<Controls
 		setaireply={setaireply}

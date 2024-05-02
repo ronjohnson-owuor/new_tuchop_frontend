@@ -94,6 +94,15 @@ interface youtubeVideoListFormart{
 	title:string
 }
 
+interface videoMessage{
+	message:string,
+	success:boolean,
+	data:youtubeVideoListFormart[]
+}
+
+
+
+
  interface savedChatsIdentifier{
 	module_id:number|undefined
 }
@@ -129,9 +138,64 @@ interface focusInterface {
 	question:string
 }
 
+ interface profileObject{
+	id:number,
+	name:string,
+	email:string,
+	picture:string,
+	token_remaining:number,
+	plan_type:string
+}
+
+ interface profileFormat {
+	message:string,
+	success:boolean,
+	data:profileObject
+}
+
+interface generalObject{
+	topics:number,
+	queries:number,
+	uploads:number
+}
+
+interface generalInterface{
+	message:string,
+	success:boolean,
+	data:generalObject
+}
+
+interface overviewData{
+	'refferals':number,
+	'awards':number,
+	'notes':number,
+	'days':number
+  }
+  
+  interface overview{
+	message: string,
+	success: boolean,
+	data: overviewData,
+	
+  }
+  
+//   setter formart for the lessons page
+ interface setterFormat2 {
+	message: string,
+	success: boolean,
+	data: topicStructure[],
+	topics_remaining:number
+  }
 
 export type {
 	TopicInterface,
+	overviewData,
+	setterFormat2,
+	overview,
+	generalInterface,
+	generalObject,
+	profileFormat,
+	profileObject,
 	focusInterface,
 	saveLessonInterface,
 	userdata,
@@ -148,6 +212,7 @@ export type {
 	AIformartResponse,
 	mediaData,
 	fileResponse,
+	videoMessage,
 	mediaobjectInterface
 }
 

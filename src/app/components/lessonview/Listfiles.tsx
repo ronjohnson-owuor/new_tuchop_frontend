@@ -48,7 +48,7 @@ function Listfiles({topic_id,close,setmediafocus}:prop) {
   return (
 	<div className='w-full rounded-md p-4'>
 		{media.length == 0 && 
-			<div className='w-[90%] h-full flex items-center justify-center gap-4 flex-col'>
+		<div className='w-[90%] h-full flex items-center justify-center gap-4 flex-col'>
 			<Image src={nohistory} width={300} alt='no topic image'/>
 			<span>no media found</span>
 		</div>

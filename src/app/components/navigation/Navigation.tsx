@@ -8,6 +8,7 @@ import Link from 'next/link'
 import useToken from '@/modules/token'
 import { data, userdata } from '@/interface/interface'
 import { postNoObjectReturn } from '@/modules/endpoint'
+import Basic from '@/modules/Basic'
 
 function Navigation() {
 	const {theme,setTheme} = useTheme();
@@ -32,11 +33,11 @@ function Navigation() {
 			<span className='sm:text-md text-transparent font-bold sm:block bg-gradient-to-r from-primary to-accent bg-clip-text'>tuchop AI</span>
 		</Link>
 		
-		<div className={` text-gray   flex flex-col md:flex-row items-center   ${shownav ? 'w-full md:w-auto absolute md:relative top-[80px] md:top-0 z-100 bg-lBackground dark:bg-dBackground md:bg-transparent' :'hidden'} items-center gap-10 h-full text-sm font-regular pt-4`}>
+		<div  className={` text-gray   flex flex-col md:flex-row items-center   ${shownav ? 'w-full md:w-auto absolute md:relative top-[80px] md:top-0 z-100 bg-lBackground dark:bg-dBackground md:bg-transparent' :'hidden'} items-center gap-10 h-full text-sm font-regular pt-4`}>
 			<Link href="/lessons" className='hover:text-primary'>lessons</Link>
 			<Link href="/create-notes" className='hover:text-primary'>notes</Link>
 			<Link href="/pricing" className='hover:text-primary'>upgrade</Link>
-			{isToken && <Link href="/" className='hover:text-primary cursor-pointer flex items-center justify-start gap-2'>
+			{isToken && <Link href="/dashboard" className='hover:text-primary cursor-pointer flex items-center justify-start gap-2'>
 			<Image src={userData?.picture ? userData.picture : avatar} width={40} height={40} className='rounded-[100vh] object-cover'  alt="avatar" />
 			<span className='text-sm sm:text-md'>{userData?.name?userData.name :'loading'}</span>
 		</Link>}
