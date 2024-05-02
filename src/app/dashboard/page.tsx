@@ -23,7 +23,7 @@ function Dashboard() {
 	
 	
   return (
-	<div>
+	<div className='w-full min-h-screen text-lText dark:text-gray'>
 		<Navigation/>
 	<div className='my-10 mx-4 grid grid-cols-1 xl:grid-cols-3 gap-4 md:grid-cols-2'>
 		<User

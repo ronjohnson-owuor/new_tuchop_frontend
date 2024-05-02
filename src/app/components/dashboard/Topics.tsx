@@ -7,11 +7,11 @@ function Topics() {
 	const[maximumPerpage, setmaximumPerpage] = useState(2);
 	const [continue_delete, setcontinue_delete] = useState(false);
 	const [delete_id, setdelete_id] = useState(0);
-	const[topicleft,settopicleft] = useState(0);
+	const[topicleft,settopicleft] = useState<string|number>(0);
 	useEffect(() => {
 		const res = postObjectReturn("saved-topics", true, {lastIndex: maximumPerpage }) as Promise<setterFormat2>;
 		res.then((data) => {
-			settopicleft(data.topics_remaining)
+			settopicleft(data.topics_remaining);
 			setResponse(data.data)})
 	  }, []);
 	  
@@ -67,7 +67,7 @@ function Topics() {
 	  
 	  
   return (
-	<div className="shadow-md p-4">
+	<div className="shadow-md p-4 dark:border dark:border-dSecondary">
 		<h3 className="text-xl">Your lessons &nbsp;{response?.length}</h3>
 		<hr className="text-lgray my-2" />
 		<div id="div_scroll" className="w-[90%] p-2 flex flex-col gap-2 max-h-[300px] overflow-y-scroll">
@@ -81,8 +81,8 @@ function Topics() {
 				<div className="flex flex-wrap gap-2">
 					<button onClick={() =>
                       (window.location.href = `/lessonmodule/${lessons.topic_name}/${lessons.topic_id}`)
-                    } className="bg-lgray p-2 rounded-md text-sm hover:bg-primary hover:text-white">open</button>
-					<button className="bg-lgray p-2 rounded-md text-sm hover:bg-primary hover:text-white" onClick={() =>
+                    } className="bg-lSecondary dark:bg-dSecondary p-2 rounded-md text-sm hover:bg-primary hover:text-white">open</button>
+					<button className="bg-lSecondary dark:bg-dSecondary p-2 rounded-md text-sm hover:bg-primary hover:text-white" onClick={() =>
                       delete_topic(lessons.topic_name, lessons.topic_id)
                     }>delete</button>
 				</div>
@@ -92,8 +92,8 @@ function Topics() {
 			
 		</div>
 		<div className="flex gap-4 items-center justify-center">
-		<p className="my-4 p-2">lessons left: &nbsp;{}</p>
-		 <button onClick={handleLoadMore} className="w-[80px] hover:bg-gray hover:text-white transition-all hover:translate-x-2 text-sm h-[40px] bg-light mx-4 rounded-md p-2">more</button>
+		<p className="my-4 p-2">lessons left: &nbsp;{topicleft}</p>
+		 <button onClick={handleLoadMore} className="w-[80px] hover:bg-accent hover:text-dText transition-all hover:translate-x-2 text-sm h-[40px] bg-primary mx-4 rounded-md p-2 text-lSecondary">more</button>
 		</div>
 
 	</div>

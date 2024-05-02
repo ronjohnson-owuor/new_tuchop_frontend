@@ -2,7 +2,7 @@ import { AIconversationResponse, focusInterface, savedChatsIdentifier, savedData
 import { postObjectNoReturn, postObjectReturn } from '@/modules/endpoint';
 import React, { useEffect, useState } from 'react'
 import Controls from './Controls';
-import { RiSave2Line, RiSearch2Line, RiYoutubeLine } from 'react-icons/ri';
+import { RiDeleteBin3Line, RiSave2Line, RiSearch2Line, RiYoutubeLine } from 'react-icons/ri';
 import Subtopic from './Subtopic';
 import Filemanager from './Filemanager';
 import Listvideo from './Listvideo';
@@ -19,9 +19,9 @@ interface prop {
 function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubtopic}:prop) {
 	const chatid :savedChatsIdentifier ={
 		module_id: id !=null ? Number(id):undefined,
-	  };
-	  const[videos,setvideos]  = useState<youtubeVideoListFormart[]| null>(null);
-	  const[topiclist,settopiclist] = useState<(string|number)[]|null>(null);
+	  };	  
+	const[videos,setvideos]  = useState<youtubeVideoListFormart[]| null>(null);
+	const[topiclist,settopiclist] = useState<(string|number)[]|null>(null);
 	const [savedchats,setsavedchats] = useState<savedDataInterface[]|[]>([]);
 	const [aireply,setaireply] = useState<AIconversationResponse[]|[]>([]);
 	const[showphrase,setshowphrase] = useState(false);
@@ -43,7 +43,7 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 				if(typeof (data) == 'object'){
 					setsavedchats([...data.data]);
 				}
-			});	
+			});
 		}
 	},[id]);
 	
@@ -100,6 +100,49 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 		<div className='w-full m-4'>
 			<h1 className='text-xl font-bold text-primary'>{topiclist!=null && topiclist[focus]}</h1>
 		</div>
+		{/* get saved chats */}
+		
+		{savedchats.length != 0 && savedchats.map((data,index) =>
+		data.submodule_id == focus && (
+			<div className=' shadow-sm p-4 my-4 rounded-md'>
+			<div className='flex justify-between my-4 items-center w-full'>
+				<h3 className='font-bold  my-4' dangerouslySetInnerHTML={{'__html': data!?.question}}></h3>
+				<div className='flex items-center gap-2'>
+					<button className='flex items-center p-1 px-2 shadow-md hover:bg-primary hover:text-dText text-sm rounded-xl dark:border dark:border-dSecondary'
+					onClick={()=>handleSave(index)}
+					><RiDeleteBin3Line/>&nbsp;delete</button>
+					<button
+					onClick={()=>{
+						setshowphrase(!showphrase);
+						setwantVideo(prev =>({
+						...prev,
+						index:index
+					}))}}
+					 className='flex items-center p-1 px-2 shadow-md hover:bg-primary hover:text-dText text-sm rounded-xl dark:border dark:border-dSecondary'><RiYoutubeLine/>&nbsp;{showphrase && wantVideo.index == index ?"close":"watch"}</button>
+				</div>
+			</div>
+			{/* get video box */}
+			<div className={` ${showphrase && wantVideo.index == index ? ' flex opacity-100  backdrop-blur-md p-4  w-[90%] my-10 shadow-md  rounded-md' :' flex  opacity-0 collapse'} transition-all duration-500 linear flex-wrap items-center justify-around gap-4 `}>
+				<input className='w-[70%] gap-4 h-[40px] bg-transparent border-gray border dark:border-dSecondary p-2 rounded-md'
+				onChange={(e)=>setPhrase(e.target.value)}
+				 type="text" placeholder='enter video name' />
+				<button
+				 className='flex items-center justify-center w-[100px] h-[40px] bg-accent hover:bg-primary rounded-md  hover:text-gray'
+				 onClick={()=>getVideo(index)}
+				 ><RiSearch2Line/>&nbsp;search</button>
+			</div>
+			
+			<span className='my-4 leading-10 text-gray' dangerouslySetInnerHTML={{'__html': data!?.answer}}></span>
+			
+		</div>
+		)
+		)}
+		
+		
+		{/* end of saved convo chat */}
+		
+		
+		
 		{/* no saved video data*/}
 		{ aireply.length != 0 && aireply.map((reply,id) =>(
 			<div className=' shadow-sm p-4 my-4 rounded-md'>
@@ -109,38 +152,13 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 					<button className='flex items-center p-1 px-2 shadow-md hover:bg-primary hover:text-dText text-sm rounded-xl dark:border dark:border-dSecondary'
 					onClick={()=>handleSave(id)}
 					><RiSave2Line/>&nbsp;save</button>
-					<button
-					onClick={()=>{
-						setshowphrase(true);
-						setwantVideo(prev =>({
-						...prev,
-						index:id
-					}))}}
-					 className='flex items-center p-1 px-2 shadow-md hover:bg-primary hover:text-dText text-sm rounded-xl dark:border dark:border-dSecondary'><RiYoutubeLine/>&nbsp;{showphrase && wantVideo.index == id ?"close":"watch"}</button>
 				</div>
 			</div>
-			{/* get video box */}
-			<div className={` ${showphrase && wantVideo.index == id ? ' flex opacity-100  backdrop-blur-md p-4  w-[90%] my-10 shadow-md  rounded-md' :' flex  opacity-0 collapse'} transition-all duration-500 linear flex-wrap items-center justify-around gap-4 `}>
-				<input className='w-[70%] gap-4 h-[40px] bg-transparent border-gray border dark:border-dSecondary p-2 rounded-md'
-				onChange={(e)=>setPhrase(e.target.value)}
-				 type="text" placeholder='enter video name' />
-				<button
-				 className='flex items-center justify-center w-[100px] h-[40px] bg-accent hover:bg-primary rounded-md  hover:text-gray'
-				 onClick={()=>getVideo(id)}
-				 ><RiSearch2Line/>&nbsp;search</button>
-			</div>
-			
 			<span className='my-4 leading-10 text-gray' dangerouslySetInnerHTML={{'__html': reply!?.answer}}></span>
 			
 		</div>
 		))
-
 		}
-		
-		{/* videos index */}
-		<div>
-			<h1>your videos</h1>
-		</div>
 		
 		{/* subtopic list menu */}
 		{showsubtopic &&
