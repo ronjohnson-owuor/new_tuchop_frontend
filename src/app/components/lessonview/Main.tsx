@@ -27,6 +27,7 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 	const[showphrase,setshowphrase] = useState(false);
 	const[mediafocus,setmediafocus] = useState<focusInterface|null>(null);
 	const[phrase,setPhrase] = useState("");
+	const[savedId,setsavedId] = useState<number|null>(null);
 	const[wantVideo,setwantVideo]  = useState({
 		istrue:false,
 		index:0
@@ -129,6 +130,7 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 					><RiDeleteBin3Line/>&nbsp;delete</button>
 					<button
 					onClick={()=>{
+						setsavedId(data.id)
 						setshowphrase(!showphrase);
 						setwantVideo(prev =>({
 						...prev,
@@ -194,6 +196,7 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 		}
 		
 		{wantVideo.istrue && <Listvideo
+		questionid={savedId!}
 		setvideolist={setvideos}
 		close={setwantVideo}
 		videolist={videos}
