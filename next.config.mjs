@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+	images: {
+		domains: ['machizi.s3.amazonaws.com'],
+	  },
+};
 
 export default nextConfig;

@@ -84,9 +84,25 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 		const res = postObjectNoReturn('save-prompt',true,saveObject);
 		// tell user something
 		res.then(data =>console.log(data));
-		// setTimeout(() => {
-		// 	this.backend_request.backend_requests_with_token_and_setter('saved-chat',savedChats,setsavedconvo);
-		// }, 200);
+		const saveres = postObjectReturn("saved-chat",true,chatid) as Promise <savedconvoInterface>;
+		saveres.then(data =>{
+			if(typeof (data) == 'object'){
+				setsavedchats([...data.data]);
+				aireply.pop();
+			}
+		});
+		
+	}
+	
+	const handleDelete = (id:number) =>{
+		const deleteres = postObjectNoReturn('delete-chat',true,{id:id});
+		deleteres.then(data => console.log(data));
+		const res = postObjectReturn("saved-chat",true,chatid) as Promise <savedconvoInterface>;
+			res.then(data =>{
+				if(typeof (data) == 'object'){
+					setsavedchats([...data.data]);
+				}
+			});
 	}
 	
 	
@@ -109,7 +125,7 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 				<h3 className='font-bold  my-4' dangerouslySetInnerHTML={{'__html': data!?.question}}></h3>
 				<div className='flex items-center gap-2'>
 					<button className='flex items-center p-1 px-2 shadow-md hover:bg-primary hover:text-dText text-sm rounded-xl dark:border dark:border-dSecondary'
-					onClick={()=>handleSave(index)}
+					onClick={()=>handleDelete(data.id)}
 					><RiDeleteBin3Line/>&nbsp;delete</button>
 					<button
 					onClick={()=>{
