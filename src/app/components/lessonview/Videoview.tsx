@@ -27,7 +27,7 @@ function Videoview({videoid,title,close,saveVideo,savedId}:props) {
          /></button>
 
 				{/* the handlee save function is implemnted in the  Lessonmodule.tsx and her we are just  re-limplementing it */}
-				<button  onClick={()=>saveVideo(savedId,videoid)}  className="bg-text_dark text-text_light text-sm p-1 rounded-md hover:text-primary cursor-pointer p-2 shadow-md dark:border dark:border-dSecondary flex items-center"><RiSave3Line/>&nbsp;save video</button>
+				<button  onClick={()=>saveVideo(savedId,videoid)}  className="bg-text_dark text-text_light text-sm p-1 rounded-md hover:text-primary cursor-pointer shadow-md dark:border dark:border-dSecondary flex items-center"><RiSave3Line/>&nbsp;save video</button>
 		</div>
 		</div>
 		

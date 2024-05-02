@@ -151,6 +151,11 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 			</div>
 			
 			<span className='my-4 leading-10 text-gray' dangerouslySetInnerHTML={{'__html': data!?.answer}}></span>
+			<div className='my-4 w-[90%] flex gap-4 justify-start'>
+			{data.follow_up_question.length !=0 && data.follow_up_question.map(questions =>(
+				<span className='shadow-sm rounded-md dark:border dark:border-dSecondary p-2'>{questions}</span>
+			))}
+			</div>
 			
 		</div>
 		)
@@ -173,6 +178,12 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 				</div>
 			</div>
 			<span className='my-4 leading-10 text-gray' dangerouslySetInnerHTML={{'__html': reply!?.answer}}></span>
+			<div className='my-4 w-[90%] flex gap-4 justify-start'>
+			{reply.follow_up_questions.length !=0 && reply.follow_up_questions.map(questions =>(
+				<span className='shadow-sm rounded-md dark:border dark:border-dSecondary p-2'>{questions}</span>
+			))}
+			</div>
+			
 			
 		</div>
 		))
