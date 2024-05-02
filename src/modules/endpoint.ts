@@ -56,6 +56,7 @@ import useToken from "./token";
 					});
 				}else{
 					 //tell user to sign up or login 
+					 return "you are logged out";
 				}
 			}else{
 				response = await api.post(path,data);
@@ -63,16 +64,16 @@ import useToken from "./token";
 			
 		   if(response?.status === 200){
 			if(response.data.success){
-			//  do something with the response
+			return response.data.message;
 			}else{
-				// do something
+				return response.data.message;
 			}
 		   }else{
-			//  "unable to perform your request"+response?.data.message;
+			"unable to perform your request"+response?.data
 		   }
 			
 		} catch (error){
-			//  "unable to perform your request"+ error;	
+			return  "unable to perform your request"+ error;	
 		}
 	 }
 	 

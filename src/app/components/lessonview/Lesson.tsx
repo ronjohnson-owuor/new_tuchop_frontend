@@ -10,13 +10,20 @@ interface props{
 
 function Lesson({id}:props) {
 	const[focus,setFocus] = useState(0);
+	const[showsubtopic,setshowsubtopic] = useState(false);
+	const[showFile,setshowFile] = useState(false);
   return (
 	<div className='w-full min-h-screen grid grid-cols-4 gap-4 my-4 p-4'>
 		{/* lesson view main section */}
 		<div className='border col-span-3 h-[80dvh] rounded-md border-lSecondary dark:border-y-0 dark:border-l-0 dark:rounded-none dark:border-r-dSecondary  overflow-y-scroll'>
 			<Main
+			setfocus={setFocus}
 			id={id}
 			focus={focus}
+			showsubtopic={showsubtopic}
+			setshowsubtopic={setshowsubtopic}
+			showfile={showFile}
+			setshowFiles={setshowFile}
 			/>
 		</div>
 		
@@ -27,10 +34,14 @@ function Lesson({id}:props) {
 			<button><RiMenu3Line/></button>
 			</div>
 			<hr className='w-full text-lSecondary my-4 dark:text-dSecondary' />
-			<button className='w-[80%] mx-[10%] flex items-center justify-center gap-2 my-4'>
+			<button
+			onClick={()=>setshowsubtopic(!showsubtopic)}
+			 className='w-[80%] mx-[10%] flex items-center justify-center gap-2 my-4'>
 				<RiListOrdered2/><span>subtopics</span>
 			</button>
-			<button className='w-[80%] mx-[10%] flex items-center justify-center gap-2 my-4'>
+			<button
+			onClick={()=>setshowFile(!showFile)}
+			 className='w-[80%] mx-[10%] flex items-center justify-center gap-2 my-4'>
 				<RiFolder3Line/><span>open files</span>
 			</button>
 			<button className='w-[80%] mx-[10%] flex items-center justify-center gap-2 my-4'>

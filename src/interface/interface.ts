@@ -61,6 +61,32 @@ interface saveLessonInterface{
 	videosId:youtubeVideoListFormart[]
 }
 
+interface mediaData {
+	media_name:string,
+	user_id:number,
+	topic_id:number,
+	subtopic_id:number,
+	media_url:string,
+	media_type:number,
+	sourceId:number
+}
+
+type  mediaobjectInterface = {
+	id: number|null,
+	media_name:string|null,
+	subtopic_id:number|null,
+	media_url:string|null,
+	media_type:number|null,
+}
+
+interface fileResponse {
+message:string,
+success:boolean,
+data:mediaobjectInterface[]
+}
+
+
+
 interface youtubeVideoListFormart{
 	index:number,
 	video_id:string,
@@ -112,6 +138,9 @@ export type {
 	notesInterface,
 	topicList,
 	AIconversationResponse,
-	AIformartResponse
+	AIformartResponse,
+	mediaData,
+	fileResponse,
+	mediaobjectInterface
 }
 

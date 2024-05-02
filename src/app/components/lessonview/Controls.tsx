@@ -11,12 +11,18 @@ function Controls({setaireply}:controlsInterface) {
 	const [userquestion,setUserquestion] = useState("");	
 	const handleAiExchange =() =>{
 		const res  = postObjectReturn('normal-chat',true,{message: userquestion}) as Promise<AIformartResponse>;
-		res.then(data =>setaireply(data.message));
+		res.then(data =>{
+			if(typeof(data.message) == 'object'){
+				setaireply((prev:AIconversationResponse[]) =>[...prev,data.message]);
+				window.scrollTo(0,document.body.scrollHeight);
+			}
+			
+		});
 	}
 	
 	
   return (
-	<div className={` w-[70%] sm:w-[60%] bg-lBackground dark:bg-dBackground fixed bottom-[30px]  dark:border-dSecondary flex gap-4 my-10 flex-col md:justify-around md:flex-row shadow-md  rounded-md p-4 bg-white`}>
+	<div className={`w-[90%] bg-lBackground dark:bg-dBackground   dark:border-dSecondary flex gap-4 my-10 flex-col md:justify-around md:flex-row shadow-md  rounded-md p-4 bg-white`}>
 		<input type="text" 
 		onFocus={(e)=>e.target.value =''}
 		onChange={(e)=>setUserquestion(e.target.value)}
