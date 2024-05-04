@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	images: {
-		domains: ['machizi.s3.amazonaws.com'],
+		remotePatterns: [
+			{
+				protocol: 'https',
+				hostname: 'machizi.s3.amazonaws.com',
+			  }],
 	  },
 };
 

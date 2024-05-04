@@ -17,8 +17,8 @@ export default function RootLayout({
   return (
     <html lang="en"  suppressHydrationWarning ={true}>
       <head>
+        <link rel="shortcut icon" href="../../public/favicon.ico" type="image/x-icon" />
       <script src="https://accounts.google.com/gsi/client" async defer></script>
-      <link rel="icon" type="image/svg" href="../../public/logo.svg" />
       </head>
       <body className="dark:bg-dBackground">     
          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
