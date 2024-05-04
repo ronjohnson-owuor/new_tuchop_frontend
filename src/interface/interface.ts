@@ -192,6 +192,19 @@ interface overviewData{
 	data: topicStructure[],
 	topics_remaining:number
   }
+  
+  
+  interface savedNotes{
+	id: number;
+	title: string;
+	created_at: string;
+} 
+
+  interface response {
+	message:string,
+	success:boolean,
+	data:savedNotes[] | null
+}
 
 export type {
 	TopicInterface,
@@ -208,12 +221,14 @@ export type {
 	data,
 	topicStructure,
 	topic,
+	savedNotes,
 	youtubeVideoListFormart,
 	savedDataInterface,
 	savedconvoInterface,
 	savedChatsIdentifier,
 	notesInterface,
 	topicsInterface,
+	response,
 	topicList,
 	AIconversationResponse,
 	AIformartResponse,
