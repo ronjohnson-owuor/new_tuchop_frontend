@@ -119,6 +119,12 @@ interface notesInterface{
 	data:""
 }
 
+interface topicsInterface{
+	message:string|null,
+	success:boolean,
+	data:string[]
+}
+
 interface AIconversationResponse{
 	question:string,
 	answer:string,
@@ -207,6 +213,7 @@ export type {
 	savedconvoInterface,
 	savedChatsIdentifier,
 	notesInterface,
+	topicsInterface,
 	topicList,
 	AIconversationResponse,
 	AIformartResponse,
