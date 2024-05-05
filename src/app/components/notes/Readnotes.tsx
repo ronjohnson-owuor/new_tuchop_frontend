@@ -22,7 +22,6 @@ function Readnotes({id,close}:props) {
 		>
 			<RiArrowGoBackLine/> &nbsp; close
 		</button>
-		<hr className='w-[90%] mx-[5%] my-4' />
 		<div className="w-[95%] mx-10 leading-loose dark:text-dText" dangerouslySetInnerHTML={{__html:notes ? `<div> ${(notes.replace(/\\n|\\r|\\n\\n\\n|\\n\\n/g, '')).trim()}<div>` :"<h1> Loading notes please wait</h1>"}}>
 		</div>
 	</div>
