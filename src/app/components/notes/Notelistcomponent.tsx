@@ -2,7 +2,10 @@ import { savedNotes } from "@/interface/interface";
 import Basic from "@/modules/Basic";
 import { postObjectNoReturn } from "@/modules/endpoint";
 import Link from "next/link";
+import { useState } from "react";
 import { RiDeleteBin3Line, RiEdit2Line } from "react-icons/ri";
+import Editnotes from "./EditNotes";
+import Readnotes from "./Readnotes";
 
 
 
@@ -11,15 +14,19 @@ interface notesInterface{
 }
 function Notelistcomponent({notes}:notesInterface) {
   const basic = new Basic();
+  const[isediting,setisediting] = useState(false);
+  const [editnotes,seteditnotes] = useState(-1);
+  const[readnotes,setreadnotes] = useState(false);
+  
   function  handleDelete(id:number){
-   
     const res = postObjectNoReturn("delete-notes",true,{id:id});
     res.then(data =>console.log(data));
-    
   }
   return (
     <>
-    <center>
+    
+    {/* when the user is not editing the notes */}
+    {!isediting && !readnotes && <><center>
       <div className='flex gap-4 items-center justify-center bg-light h-[80px] w-[80%] my-4'>
 				<Link href="/lessons" className="p-2 shadow-sm rounded-md mx-2 dark:border dark:border-dSecondary hover:bg-primary hover:text-dText">📙 lessons</Link>
 				<Link href="/create-notes" className="p-2 shadow-sm rounded-md mx-2 dark:border dark:border-dSecondary hover:bg-primary hover:text-dText">✨ create</Link>
@@ -36,6 +43,9 @@ function Notelistcomponent({notes}:notesInterface) {
         <h1 className="text-xl m-4 font-bold ">{basic.trim(note.title)}</h1>
         <div className=" w-full flex flex-col-reverse sm:flex-row sm:items-center sm:justify-start gap-2 text-sm ">
           <button
+          onClick={()=> {
+            setreadnotes(!readnotes)
+          seteditnotes(note.id)}}
             className="w-[80px] my-4 sm:my-0 text-lText dark:text-dText hover:text-primary h-[40px] rounded-md dark:border dark:border-dSecondary shadow-sm"
           >
             read
@@ -52,6 +62,9 @@ function Notelistcomponent({notes}:notesInterface) {
           </span>
           <span
             className=" border flex items-center dark:border-dSecondary border-lSecondary shadow-sm text-lText dark:text-dText  mx-2 rounded-md  p-2 text-[10px] mt-4 cursor-pointer text-white hover:bg-primary"
+            onClick={()=> {
+              setisediting(!isediting)
+            seteditnotes(note.id)}}
           >
             <RiEdit2Line/>
             &nbsp;edit
@@ -61,7 +74,20 @@ function Notelistcomponent({notes}:notesInterface) {
         ))
       }
       
-    </div>
+    </div></>
+    }
+    {/* editing part */}
+    {isediting && <Editnotes
+    id = {editnotes}
+    close={setisediting}
+    />}
+    {/* user reading his/her notes */}
+    {readnotes && 
+    <Readnotes
+    id={editnotes}
+    close={setreadnotes}
+    />
+    }
     </>
   );
 }
