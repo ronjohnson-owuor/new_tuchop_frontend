@@ -35,7 +35,7 @@ function Navigation() {
 		
 		<div  className={` text-gray   flex flex-col md:flex-row items-center   ${shownav ? 'w-full md:w-auto absolute md:relative top-[80px] md:top-0 z-100 bg-lBackground dark:bg-dBackground md:bg-transparent' :'hidden'} items-center gap-10 h-full text-sm font-regular pt-4`}>
 			<Link href="/lessons" className='hover:text-primary'>lessons</Link>
-			<Link href="/create-notes" className='hover:text-primary'>notes</Link>
+			<Link href="/my-notes" className='hover:text-primary'>notes</Link>
 			<Link href="/pricing" className='hover:text-primary'>upgrade</Link>
 			{isToken && <Link href="/dashboard" className='hover:text-primary cursor-pointer flex items-center justify-start gap-2'>
 			<Image src={userData?.picture ? userData.picture : avatar} width={40} height={50} className='rounded-[100vh] object-cover'  alt="avatar" />

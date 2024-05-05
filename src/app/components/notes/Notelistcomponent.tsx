@@ -3,7 +3,6 @@ import Basic from "@/modules/Basic";
 import { postObjectNoReturn } from "@/modules/endpoint";
 import Link from "next/link";
 import { RiDeleteBin3Line, RiEdit2Line } from "react-icons/ri";
-import Footer from "../footer/Footer";
 
 
 
@@ -25,34 +24,34 @@ function Notelistcomponent({notes}:notesInterface) {
 				<Link href="/lessons" className="p-2 shadow-sm rounded-md mx-2 dark:border dark:border-dSecondary hover:bg-primary hover:text-dText">📙 lessons</Link>
 				<Link href="/create-notes" className="p-2 shadow-sm rounded-md mx-2 dark:border dark:border-dSecondary hover:bg-primary hover:text-dText">✨ create</Link>
 			</div></center>
-    <div className="sm:w-[90%] flex sm:mx-10 mt-10 min-h-[100px] flex-wrap items-center justify-center">
+    <div className="sm:w-[90%] flex sm:mx-10 mt-10 min-h-[100px] flex-wrap items-center justify-center gap-4">
       
       { notes != null && 
         notes?.map((note,key) =>(
           <div
         title={note.title}
-        className="w-[300px] min-h-[80px] gap-2 border border-text_dark shadow-sm rounded mx-4 my-10 p-2 flex flex-col bg-[linear-gradient(45deg,transparent_25%,rgba(68,68,68,.2)_50%,transparent_75%,transparent_100%)] bg-[length:250%_250%,100%_100%] bg-[position:-100%_0,0_0] bg-no-repeat transition-[background-position_0s_ease] hover:bg-[position:200%_0,0_0] hover:duration-[2000ms] dark:border-dSecondary"
+        className="w-[300px] p-4 min-h-[80px] gap-2 border shadow-sm border-lSecondary rounded-md dark:border-dSecondary"
         key={key}
       >
-        <h1 className="text-md font-bold">{basic.trim(note.title)}</h1>
-        <div className="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-start gap-2 text-sm ">
+        <h1 className="text-xl m-4 font-bold ">{basic.trim(note.title)}</h1>
+        <div className=" w-full flex flex-col-reverse sm:flex-row sm:items-center sm:justify-start gap-2 text-sm ">
           <button
-            className="w-[80px] my-4 sm:my-0 text-text_light hover:text-primary h-[40px] rounded-md bg-text_dark"
+            className="w-[80px] my-4 sm:my-0 text-lText dark:text-dText hover:text-primary h-[40px] rounded-md dark:border dark:border-dSecondary shadow-sm"
           >
             read
           </button>
-          <span>created :&nbsp;{note.created_at}</span>
+          <span className="text-lText dark:text-dText">created :&nbsp;{note.created_at}</span>
         </div>
-        <div className="mx-4 my-4">
+        <div className="mx-4 my-4 w-[90%] flex items-center justify-end gap-2 p-2">
           <span
             onClick={() =>handleDelete(note.id)}
-            className=" bg-error rounded-md  p-2 text-[10px] mt-4 cursor-pointer text-white hover:bg-primary"
+            className=" bg-error flex items-center rounded-md  p-2 text-[10px] mt-4 cursor-pointer text-dText hover:bg-primary"
           >
             <RiDeleteBin3Line/>
             &nbsp;delete
           </span>
           <span
-            className=" bg-success mx-2 rounded-md  p-2 text-[10px] mt-4 cursor-pointer text-white hover:bg-primary"
+            className=" border flex items-center dark:border-dSecondary border-lSecondary shadow-sm text-lText dark:text-dText  mx-2 rounded-md  p-2 text-[10px] mt-4 cursor-pointer text-white hover:bg-primary"
           >
             <RiEdit2Line/>
             &nbsp;edit
@@ -63,7 +62,6 @@ function Notelistcomponent({notes}:notesInterface) {
       }
       
     </div>
-    <Footer/>
     </>
   );
 }

@@ -1,6 +1,6 @@
 "use client"
 import { postNoObjectReturn } from '@/modules/endpoint';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navigation from '../components/navigation/Navigation';
 import { nohistory } from '../components/container';
 import Link from 'next/link';
@@ -10,8 +10,13 @@ import Image from 'next/image';
 
 function page() {
 	const [notes,setNotes] = useState<null|savedNotes[]>(null);
+	
+	
+	useEffect(()=>{
 	  const res = postNoObjectReturn("get-saved-notes",true) as Promise<response>;
-	  res.then(data =>setNotes(data.data)); 
+	  res.then(data =>setNotes(data.data)); 		
+	},[])
+
   
 	return (
 	  <div>
