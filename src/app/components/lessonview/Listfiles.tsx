@@ -57,9 +57,9 @@ function Listfiles({topic_id,close,setmediafocus}:prop) {
 		{
 			media.length !== 0 &&
 			media.map((file,index) =>(
-				<div className='flex items-center min-h-[80px] my-4 p-2 justify-around border border-lSecondary dark:border-dSecondary rounded-md'>
+				<div className='flex items-center w-full overflow-x-scroll sm:overflow-x-hidden text-sm md:text-md min-h-[80px] my-4 p-2 justify-around border border-lSecondary dark:border-dSecondary rounded-md'>
 					{/* when the user is renaming the subtopic  */}
-					<div className={`flex items-center gap-4 justify-start p-2 transition-all duration-500 ml-0 ${renaming.isrenaming && renaming.index == index ? ' ml-0' :'ml-[-1000px] collapse'}`}>
+					<div className={`flex items-center gap-4 justify-end sm:justify-start p-2 transition-all duration-500 ml-0 ${renaming.isrenaming && renaming.index == index ? ' ml-0' :'ml-[-1000px] collapse'}`}>
 						<input type="text"
 						onChange={(e)=>setnewname(prev =>({
 							...prev,
@@ -84,7 +84,7 @@ function Listfiles({topic_id,close,setmediafocus}:prop) {
 					</div>
 					 
 					 {/* when the user is  not renaming the subtopic */}
-					 <div className={`flex items-center justify-around p-2 transition-all duration-200 ml-0 ${renaming.isrenaming && renaming.index == index ? 'ml-[-500px] collapse' :'ml-0'}`}>
+					 <div className={` p-2 transition-all duration-200 ${renaming.isrenaming && renaming.index == index ? 'ml-[-500px] collapse' :'flex items-center justify-start gap-2 ml-[660px] visible w-full'}`}>
 					 <p title={file.media_name!}>{basic.trim(file.media_name!)}</p>
 					<div className='flex gap-4 items-center'>
 					 <button

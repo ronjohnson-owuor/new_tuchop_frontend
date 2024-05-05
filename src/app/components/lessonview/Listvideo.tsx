@@ -35,10 +35,10 @@ function Listvideo({videolist,setvideolist,close,questionid}:Props) {
 	
 	
   return (
-	<div className='absolute w-full min-h-screen p-10  backdrop-blur-md top-0 left-0 grid place-items-center'>
-		<div className='flex w-[80%] mx-[10%] h-[500px] flex-col overflow-y-scroll p-4 gap-4 mt-[50px] dark:bg-dBackground bg-lBackground'>
+	<div className='absolute w-full min-h-screen sm:p-10  backdrop-blur-md top-0 left-0 grid sm:place-items-center'>
+		<div className='flex w-full md:w-[80%] md:mx-[10%] h-[500px] flex-col overflow-y-scroll p-4 gap-4 mt-[50px] dark:bg-dBackground bg-lBackground'>
 		<div className='flex  items-center justify-around shadow-md rounded-sm p-2 dark:bg-dBackground bg-lBackground'>
-			<h1 className='text-xl font-bold text-primary'>Youtube video list </h1>
+			<h1 className='text-md sm:text-xl font-bold text-primary'>Youtube video list </h1>
 			<button 
 		  onClick={()=>{
 			setvideolist(null);
@@ -61,7 +61,7 @@ function Listvideo({videolist,setvideolist,close,questionid}:Props) {
 		{/* list the video if there are videos */}
 		<div className='w-full rounded-md p-4 grid grid-cols-1 gap-10 dark:bg-dBackground bg-lBackground'>
 		{videolist !=null && !isplaying && videolist.slice(0,10).map((videos,index) =>(
-			<div className='w-full min-h-[100px] flex gap-4 shadow-md dark:border dark:border-dSecondary'>
+			<div className='w-full min-h-[100px] p-2 flex gap-4 shadow-md dark:border dark:border-dSecondary'>
 				<img className='w-[20%] object-cover max-h-[400px]' src={videos.thumbnail} alt="thumbnail" />	
 				<div className='w-[80%] flex flex-col gap-4'>
 					<span className='font-bold text-md my-2'>{videos.title}</span>

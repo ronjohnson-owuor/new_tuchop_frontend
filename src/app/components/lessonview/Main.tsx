@@ -14,9 +14,10 @@ interface prop {
 	showsubtopic:boolean,
 	setshowsubtopic:Function,
 	showfile:boolean,
-	setshowFiles:Function
+	setshowFiles:Function,
+	setmenu:Function
 }
-function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubtopic}:prop) {
+function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubtopic,setmenu}:prop) {
 	const chatid :savedChatsIdentifier ={
 		module_id: id !=null ? Number(id):undefined,
 	  };	  
@@ -141,11 +142,11 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 			</div>
 			{/* get video box */}
 			<div className={` ${showphrase && wantVideo.index == index ? ' flex opacity-100  backdrop-blur-md p-4  w-[90%] my-10 shadow-md  rounded-md' :' flex  opacity-0 collapse'} transition-all duration-500 linear flex-wrap items-center justify-around gap-4 `}>
-				<input className='w-[70%] gap-4 h-[40px] bg-transparent border-gray border dark:border-dSecondary p-2 rounded-md'
+				<input className='sm:w-[70%] w-full gap-4 h-[40px] bg-transparent border-gray border dark:border-dSecondary p-2 rounded-md'
 				onChange={(e)=>setPhrase(e.target.value)}
 				 type="text" placeholder='enter video name' />
 				<button
-				 className='flex items-center justify-center w-[100px] h-[40px] bg-accent hover:bg-primary rounded-md  hover:text-gray'
+				 className='flex items-center justify-center w-full sm:w-[100px] h-[40px] bg-accent hover:bg-primary rounded-md  hover:text-gray'
 				 onClick={()=>getVideo(index)}
 				 ><RiSearch2Line/>&nbsp;search</button>
 			</div>
@@ -214,6 +215,7 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 		/>}
 		
 		<Controls
+		setmenu={setmenu}
 		setaireply={setaireply}
 		mediafocus={mediafocus}
 		setmediafocus={setmediafocus}

@@ -2,14 +2,15 @@
 import { AIconversationResponse, AIformartResponse, focusInterface } from '@/interface/interface';
 import { postObjectReturn } from '@/modules/endpoint';
 import React, { useState } from 'react'
-import { RiEraserLine, RiSendPlane2Line } from 'react-icons/ri';
+import { RiEraserLine, RiMenu2Line, RiSendPlane2Line } from 'react-icons/ri';
 
 interface controlsInterface{
 	setaireply:Function
 	mediafocus:focusInterface|null,
-	setmediafocus:Function
+	setmediafocus:Function,
+	setmenu:Function
 }
-function Controls({setaireply,mediafocus,setmediafocus}:controlsInterface) {
+function Controls({setaireply,mediafocus,setmediafocus,setmenu}:controlsInterface) {
 	const [userquestion,setUserquestion] = useState("");
 	const handleAiExchange =() =>{
 		let res;
@@ -47,6 +48,7 @@ function Controls({setaireply,mediafocus,setmediafocus}:controlsInterface) {
 			className="w-full sm:w-full h-[40px] border border-lSecondary dark:border-dSecondary rounded px-2 bg-transparent outline-none"
 			placeholder="enter your question here" />
 		<div className="flex w-full xl:w-[30%] justify-end items-center  gap-2">
+		<button onClick={()=>setmenu(true)} className="text-sm border flex items-center border-lSecondary dark:border-dSecondary shadow-sm cursor-pointer  p-2 rounded-md hover:bg-accent text-lText  dark:text-dText"><RiMenu2Line/>&nbsp;menu</button>
 			<button className="text-sm border flex items-center border-lSecondary dark:border-dSecondary shadow-sm cursor-pointer  p-2 rounded-md hover:bg-accent bg-primary text-dText"
 			onClick={handleAiExchange}
 			><RiSendPlane2Line className='text-xl'/>&nbsp;ask </button>	

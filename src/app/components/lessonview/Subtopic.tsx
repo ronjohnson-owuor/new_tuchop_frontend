@@ -17,7 +17,7 @@ function Subtopic({subtopics,close,setfocus}:props) {
   return (
 	<div className='absolute w-full h-screen backdrop-blur-md top-0 left-0 flex items-center justify-center'>
 		<div className='bg-lBackground dark:bg-dBackground rounded-md shadow-md p-10 my-10 h-[500px] w-[90%] mx-[5%] md:w-[60%] md:mx-0 overflow-y-scroll '>
-			<div className='flex items-center justify-around gap-4 my-10'>
+			<div className='flex flex-col sm:flex-row items-center justify-around gap-4 my-10'>
 				<h1 className='font-bold text-xl text-primary'>subtopics</h1>
 				<div className='flex items-center gap-4 p-4'>
 					<button className='flex items-center justify-center hover:text-primary w-[80px] h-[30px] rounded-md border shadow-sm border-lSecondary dark:border-dSecondary '><RiEdit2Line/>&nbsp;edit</button>

@@ -51,7 +51,7 @@ function page() {
     <div className="mt-4  px-4">
       <center><h1 className="text-xl mb-10 md:text-[50px] p-2 bg-gradient-to-r from-primary to-accent via-error bg-clip-text text-transparent font-bold ">We missed you</h1></center>
       <div className="flex  mt-10 items-center justify-center"> 
-      <div id="googleSignin" className="my-4"></div>     
+      <div id="googleSignin" className="my-4 z-0"></div>     
     </div>
      <div className="w-full h-[2px] bg-accent rounded-md"></div>
      <center><h3 className="text-xl my-4">OR</h3></center>

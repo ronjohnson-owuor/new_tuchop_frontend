@@ -92,8 +92,8 @@ function Prompt() {
 		{/* when user has retrieved the topics */}
 		{topics!== null && topics.length > 1 && <div id="div_scroll" className="mt-2 flex items-center flex-col">
 				<h3 className="my-2 font-bold text-xl text-secondary">scroll for more topics</h3>
-				<div className="flex gap-4 mx-4 flex-wrap shrink-0"> 
-					<button className="w-[150px] h-[40px] rounded shadow bg-primary text-light "
+				<div className="flex gap-4 mx-4 my-4 items-center justify-center flex-wrap shrink-0 w-full "> 
+					<button className="w-[100px] h-[40px] rounded shadow bg-primary text-light "
 					onClick={saveAndStartLessons}
 					>start lesson</button>
 					 <button
@@ -112,7 +112,7 @@ function Prompt() {
 							<h3 className="w-[80%]">{subtopic}</h3>
 							<button key={index} 
 							onClick={()=>handleRemoveTopic(index)}
-							 className="w-[50px] h-[40px] text-[10px] text-white dark:bg-dSecondary bg-lSecondary rounded-md hover:bg-primary">delete</button>
+							 className="w-[15%] h-[40px] text-[10px] text-white dark:bg-dSecondary bg-lSecondary rounded-md hover:bg-primary">delete</button>
 						</div>
 	
 					))

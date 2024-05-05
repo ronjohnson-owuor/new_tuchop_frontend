@@ -26,6 +26,7 @@ function Navigation() {
 	},[]);
 	
 	
+	
   return (
 	<div className='flex shadow-md justify-between w-full h-[80px] p-2 dark:border-b dark:border-dSecondary md:justify-center sm:gap-10 md:gap-20'>
 		<Link href="/" className='flex items-center gap-4 cursor-pointer md:mx-0'>
@@ -33,7 +34,7 @@ function Navigation() {
 			<span className='sm:text-md text-transparent font-bold sm:block bg-gradient-to-r from-primary to-accent bg-clip-text'>tuchop AI</span>
 		</Link>
 		
-		<div  className={` text-gray   flex flex-col md:flex-row items-center   ${shownav ? 'w-full md:w-auto absolute md:relative top-[80px] md:top-0 z-100 bg-lBackground dark:bg-dBackground md:bg-transparent' :'hidden'} items-center gap-10 h-full text-sm font-regular pt-4`}>
+		<div  className={` text-gray   flex flex-col md:flex-row items-center   ${shownav ? 'backdrop-blur-md md:backdrop-blur-none w-full md:w-auto absolute md:relative top-[80px] md:top-0 z-100 bg-lBackground dark:bg-dBackground md:bg-transparent' :'hidden'} items-center gap-10 h-full text-sm font-regular pt-4`}>
 			<Link href="/lessons" className='hover:text-primary'>lessons</Link>
 			<Link href="/my-notes" className='hover:text-primary'>notes</Link>
 			<Link href="/pricing" className='hover:text-primary'>upgrade</Link>

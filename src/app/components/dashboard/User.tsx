@@ -39,6 +39,8 @@ function User({data,id,queries}:Props) {
 	<div className="flex items-center justify-center gap-2">
 		<div className="relative">
 		<Image className="w-[100px] h-[100px] rounded-[100vh] object-cover" 
+		width={300}
+		height={300}
 		src={data?.picture ? data?.picture :avatar} alt="user profile" />
 		</div>
 		<div className="flex flex-col">

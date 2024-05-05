@@ -7,6 +7,8 @@ function Footer() {
 		<span>&copy;zeronlabs</span>
 		<ul className="flex items-center justify-around gap-4 flex-wrap">
 			<Link href='/terms'>terms</Link>
+			<Link href='/policy'>policy</Link>
+			<Link href='/about'>about</Link>
 			<Link href='/contact-us'>contact us</Link>
 			<Link href='/pricing' className="text-primary">upgrade</Link>
 		</ul>
