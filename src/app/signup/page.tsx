@@ -4,6 +4,7 @@ import accountManager from "../../modules/accountManagement";
 import socialiteSignup from "../../modules/socialite";
 import Basic from "../../modules/Basic";
 import Navigation from "../components/navigation/Navigation";
+import { Toaster } from "sonner";
 declare const google: any;
 function Signup() {
   const accountsManagers = new accountManager();
@@ -52,7 +53,7 @@ function Signup() {
   const checkRefferal = () =>{
     const reffererCode = window.location.href.split('?ref=');
     if(reffererCode[1]){
-      let userId = basic.decode(reffererCode[1]);
+      let userId = basic.decodeUrl(reffererCode[1]);
       setuserDetails(prev =>({
         ...prev,
         refferall:userId
@@ -65,6 +66,7 @@ function Signup() {
 
   return (
     <div className="w-full flex flex-col items-center min-h-screen flex-wrap bg-lBackground dark:bg-dBackground text-lText dark:text-dText">
+      <Toaster position="top-center"/>
 		<Navigation/>
       <div className="mt-10 mx-4">
         <h1 className="text-xl mb-10 md:text-[50px] p-2 bg-gradient-to-r from-primary to-accent via-error bg-clip-text text-transparent font-bold ">create account</h1>

@@ -4,6 +4,7 @@ import 'react-quill/dist/quill.snow.css';
 import ReactQuill from "react-quill";
 import { notesInterface } from "@/interface/interface";
 import { postObjectNoReturn, postObjectReturn } from "@/modules/endpoint";
+import { toast } from "sonner";
 
 
 interface props{
@@ -53,7 +54,19 @@ function Editnotes({id,close}:props) {
 			notes:notes
 		}
 		const res = postObjectNoReturn("save-edited-notes",true, payload);
-		res.then(data => console.log(data));
+		res.then(data =>{
+			if(data.success){
+				toast.success("notes saved",{
+				  duration:4000,
+				  className:'bg-sucess text-dText'
+				})
+			  }else{
+				toast.error("unable to save notes",{
+				  duration:4000,
+				  className:'bg-error text-dText'
+				})
+			  }
+		});
 	}
 	
 	

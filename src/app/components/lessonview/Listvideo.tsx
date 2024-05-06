@@ -5,6 +5,7 @@ import { RiCloseLine, RiPlayCircleLine, RiSave2Fill } from 'react-icons/ri'
 import { nohistory } from '../container'
 import Videoview from './Videoview'
 import { postObjectNoReturn } from '@/modules/endpoint'
+import { toast } from 'sonner'
 
 interface Props{
 	videolist:youtubeVideoListFormart[]|null,
@@ -30,7 +31,19 @@ function Listvideo({videolist,setvideolist,close,questionid}:Props) {
 			video_id:video_id
 		}
 		const res = postObjectNoReturn('save-video',true,videosTobeSavedObject);
-		res.then(data =>console.log(data));
+		res.then(data =>{
+		  if (data.success){
+			toast.success(data.message,{
+				duration:4000,
+				className:'bg-sucess text-dText'
+			});
+		  }else{
+			toast.error(data.message,{
+				duration:4000,
+				className:'bg-error text-dText'
+			});
+		  }
+		});
 	 }
 	
 	

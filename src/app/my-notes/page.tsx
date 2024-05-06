@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { response, savedNotes } from '@/interface/interface';
 import Notelistcomponent from '../components/notes/Notelistcomponent';
 import Image from 'next/image';
+import { Toaster, toast } from 'sonner';
 
 function page() {
 	const [notes,setNotes] = useState<null|savedNotes[]>(null);
@@ -14,13 +15,27 @@ function page() {
 	
 	useEffect(()=>{
 	  const res = postNoObjectReturn("get-saved-notes",true) as Promise<response>;
-	  res.then(data =>setNotes(data.data)); 		
+	  res.then(data =>{
+		setNotes(data.data);
+		if(data.success){
+			toast.success(data.message,{
+			  duration:4000,
+			  className:'bg-sucess text-dText'
+			})
+		  }else{
+			toast.error(data.message,{
+			  duration:4000,
+			  className:'bg-error text-dText'
+			})
+		  }
+	}); 		
 	},[])
 
   
 	return (
 	  <div>
 		<Navigation/>
+		<Toaster position='top-center'/>
 		{/* if the user has not created any notes yet */}
 		{notes == null && (
 		  <div className="w-full h-[70vh] overflow-hidden  flex flex-col items-center justify-center ">

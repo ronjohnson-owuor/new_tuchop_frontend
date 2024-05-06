@@ -193,6 +193,11 @@ interface overviewData{
 	topics_remaining:number
   }
   
+  interface paymentUrl {
+	message:string,
+    success:boolean,
+    data:string
+  }
   
   interface savedNotes{
 	id: number;
@@ -235,6 +240,7 @@ export type {
 	mediaData,
 	fileResponse,
 	videoMessage,
-	mediaobjectInterface
+	mediaobjectInterface,
+	paymentUrl
 }
 

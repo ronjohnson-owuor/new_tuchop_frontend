@@ -10,7 +10,7 @@ function Footer() {
 			<Link href='/policy'>policy</Link>
 			<Link href='/about'>about</Link>
 			<Link href='/contact-us'>contact us</Link>
-			<Link href='/pricing' className="text-primary">upgrade</Link>
+			<Link href='/usage' className="text-primary">upgrade</Link>
 		</ul>
 	</div>
   )

@@ -3,6 +3,7 @@ import { AIconversationResponse, AIformartResponse, focusInterface } from '@/int
 import { postObjectReturn } from '@/modules/endpoint';
 import React, { useState } from 'react'
 import { RiEraserLine, RiMenu2Line, RiSendPlane2Line } from 'react-icons/ri';
+import { toast } from 'sonner';
 
 interface controlsInterface{
 	setaireply:Function
@@ -13,6 +14,10 @@ interface controlsInterface{
 function Controls({setaireply,mediafocus,setmediafocus,setmenu}:controlsInterface) {
 	const [userquestion,setUserquestion] = useState("");
 	const handleAiExchange =() =>{
+		toast.info('question submitted',{
+			duration:4000,
+			className:'bg-primary text-dText'
+		});
 		let res;
 		if(mediafocus == null){
 			 res  = postObjectReturn('normal-chat',true,{message: userquestion}) as Promise<AIformartResponse>;
@@ -24,7 +29,6 @@ function Controls({setaireply,mediafocus,setmediafocus,setmenu}:controlsInterfac
 				
 			});			
 		}else{
-			console.log(mediafocus)
 			res = postObjectReturn('ask-file',true,{...mediafocus,question:userquestion}) as Promise<AIformartResponse>
 			res.then(data =>{
 				if(typeof(data.message) == 'object'){

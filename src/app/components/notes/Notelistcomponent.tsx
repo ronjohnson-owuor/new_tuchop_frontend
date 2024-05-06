@@ -6,6 +6,7 @@ import { useState } from "react";
 import { RiDeleteBin3Line, RiEdit2Line } from "react-icons/ri";
 import Editnotes from "./EditNotes";
 import Readnotes from "./Readnotes";
+import { toast } from "sonner";
 
 
 
@@ -20,7 +21,19 @@ function Notelistcomponent({notes}:notesInterface) {
   
   function  handleDelete(id:number){
     const res = postObjectNoReturn("delete-notes",true,{id:id});
-    res.then(data =>console.log(data));
+    res.then(data =>{
+      if(data.success){
+        toast.success("notes deleted",{
+          duration:4000,
+          className:'bg-sucess text-dText'
+        })
+      }else{
+        toast.error("unable to delete notes",{
+          duration:4000,
+          className:'bg-error text-dText'
+        })
+      }
+    });
   }
   return (
     <>

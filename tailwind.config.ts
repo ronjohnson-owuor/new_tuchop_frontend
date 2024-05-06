@@ -23,7 +23,7 @@ const config: Config = {
       dSecondary:"#1D1D1D",
       // common colors
       error:"crimson",
-      sucess:"#09FF2E",
+      sucess:"#00D100",
       transparent:"transparent"
       
     }

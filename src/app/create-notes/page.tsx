@@ -6,6 +6,7 @@ import Footer from '../components/footer/Footer'
 import { postObjectNoReturn, postObjectReturn } from '@/modules/endpoint'
 import { notesInterface, topicsInterface } from '@/interface/interface'
 import Displaynotes from '../components/notes/Displaynotes'
+import { Toaster, toast } from 'sonner'
 
 function page() {
   const [search,setSearch] = useState<string|null>(null);
@@ -19,7 +20,20 @@ function page() {
   // when we get the notes for the topic
   const handleGetTopic = () =>{
       const res = postObjectReturn("get-topic-notes", true,{ title: search }) as Promise<topicsInterface>;
-      res.then(data =>setTopics(data.data));
+      res.then(data =>{
+        setTopics(data.data);
+        if(data.success){
+          toast.success(data.message,{
+            duration:4000,
+            className:'bg-sucess text-dText'
+          })
+        }else{
+          toast.error(data.message,{
+            duration:4000,
+            className:'bg-error text-dText'
+          })
+        }
+      });
   }
   
   // now get the notes according to the topic  the user has picked
@@ -29,7 +43,20 @@ function page() {
         title: choosentopic.trim(),
       }))
       const  res = postObjectReturn("get-notes",true,{ title:choosentopic.trim()}) as  Promise<notesInterface>;
-      res.then ( data => setNotes(JSON.stringify(data.data)));
+      res.then ( data => {
+        setNotes(JSON.stringify(data.data));
+        if(data.success){
+          toast.success(data.message,{
+            duration:4000,
+            className:'bg-sucess text-dText'
+          })
+        }else{
+          toast.error(data.message,{
+            duration:4000,
+            className:'bg-error text-dText'
+          })
+        }
+      });
     
       
   }
@@ -46,7 +73,19 @@ function page() {
   //  take a break man => MESSI IS THE GOAT🐐🐐
   const saveNotes = () =>{
     const res = postObjectNoReturn("save-notes",true,notesToBeSaved);
-    res.then(data =>console.log(data));
+    res.then(data =>{
+      if(data.success){
+        toast.success("notes saved",{
+          duration:4000,
+          className:'bg-sucess text-dText'
+        })
+      }else{
+        toast.error("unable to save notes",{
+          duration:4000,
+          className:'bg-error text-dText'
+        })
+      }
+    });
 
   }
   
@@ -56,6 +95,7 @@ function page() {
 	<div
 	className='w-full min-h-screen bg-lBackground dark:bg-dBackground text-lText dark:text-dText'
 	>
+    <Toaster position='top-center'/>
 		<Navigation/>
 		{notes === null && 
     <>

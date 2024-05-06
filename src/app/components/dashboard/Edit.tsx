@@ -1,6 +1,7 @@
 import {postObjectNoReturn } from "@/modules/endpoint";
 import { useEffect, useState } from "react"
 import { RiCloseLine, RiEdit2Line, RiUpload2Line } from "react-icons/ri";
+import { toast } from "sonner";
 
 function Edit() {
 	const [edit,setEdit] = useState(true);
@@ -33,6 +34,19 @@ function Edit() {
 		fd.append('name',userData.name);
 		fd.append('image',userData.picture as File);
 		const res = postObjectNoReturn('edit-user',true,fd);
+		res.then(data =>{
+			if(data.success){
+				toast.success("edits saved",{
+				  duration:4000,
+				  className:'bg-sucess text-dText'
+				})
+			  }else{
+				toast.error("unable to save edits",{
+				  duration:4000,
+				  className:'bg-error text-dText'
+				})
+			  }
+		})
 	}
 	
 	

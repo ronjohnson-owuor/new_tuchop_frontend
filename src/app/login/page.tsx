@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import accountManager from "../../modules/accountManagement";
 import socialiteSignup from "../../modules/socialite";
 import Navigation from "../components/navigation/Navigation";
+import { Toaster } from "sonner";
 declare const google: any;
 function page() {
   const socialiteLogin = new socialiteSignup();
@@ -48,6 +49,7 @@ function page() {
   return (
 	<div className="w-full flex flex-col items-center min-h-screen flex-wrap bg-lBackground dark:bg-dBackground text-lText dark:text-dText">
     <Navigation/>
+    <Toaster position= "top-center"/>
     <div className="mt-4  px-4">
       <center><h1 className="text-xl mb-10 md:text-[50px] p-2 bg-gradient-to-r from-primary to-accent via-error bg-clip-text text-transparent font-bold ">We missed you</h1></center>
       <div className="flex  mt-10 items-center justify-center"> 

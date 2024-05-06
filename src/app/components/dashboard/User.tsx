@@ -5,6 +5,7 @@ import { postNoObjectReturn } from "@/modules/endpoint";
 import { RiClipboardLine } from "react-icons/ri";
 import { avatar } from "../container";
 import Image from "next/image";
+import { toast } from "sonner";
 interface Props{
 	id:string,
 	queries:Function,
@@ -16,10 +17,16 @@ function User({data,id,queries}:Props) {
 		const inputValue = `https://tuchop.com/signup?ref=${basic.encodeUrl(data?.id!)}`;
 		navigator.clipboard.writeText(inputValue)
         .then(function() {
-            alert('copied');
+            toast.success('copied',{
+				duration:4000,
+				className:'bg-sucess text-dText'
+			});
         })
         .catch(function() {
-            alert('Failed to copy');
+            toast.error('Failed to copy',{
+				duration:4000,
+				className: 'bg-errror text-dText'
+			});
         });
 	}
 	
@@ -51,14 +58,11 @@ function User({data,id,queries}:Props) {
 	</div>
 	{/* user details and info */}
 	<div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-2 my-4 p-2">
-		<div className="border border-lgray p-2 rounded dark:border-dSecondary">
-			<p className="text-gray text-md">plan</p>
-			<span className="text-gray font-bold">{data?.plan_type == "0" ? 'free' : data?.plan_type == "1" ? 'starter' :data?.plan_type == "2" ? 'pro' :'yearly'}</span>
+		<div className="border border-lgray col-span-2 p-2 rounded dark:border-dSecondary">
+			<p className="text-gray text-md">wallet</p>
+			<span className="text-gray font-bold">ksh. {data?.plan_type}</span>
 		</div>
-		<div className="border border-lgray p-2 rounded dark:border-dSecondary">
-			<p className="text-gray text-md">tokens</p>
-			<span className="text-gray font-bold">{data?.token_remaining}</span>
-		</div>
+		
 		<div className="border border-lgray p-2 rounded dark:border-dSecondary">
 			<p className="text-gray text-md">topics</p>
 			<span className="text-gray font-bold">{userData?.topics}</span>

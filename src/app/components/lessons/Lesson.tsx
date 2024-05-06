@@ -7,6 +7,7 @@ import Loading from './Loading';
 import { nohistory } from '../container';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Toaster, toast } from 'sonner';
 
 function Lesson() {
 	
@@ -17,6 +18,12 @@ function Lesson() {
 		res.then(data =>{
 			if(data.data.length != 0){
 				setTopic(data.data);
+			}else{
+				setshowNoLesson(true);
+				toast.error('you have no topic',{
+					duration:4000,
+					className:'bg-error text-dText'
+				});
 			}
 		});
 	},[]);
@@ -30,6 +37,7 @@ function Lesson() {
 	
   return (
 	<div>
+		<Toaster position='top-center'/>
 		{topic === null &&
 		 <div>
 			{!showNoLesson ? (

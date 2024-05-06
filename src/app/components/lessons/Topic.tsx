@@ -1,8 +1,10 @@
 "use client"
 import { topicStructure } from '@/interface/interface'
 import Basic from '@/modules/Basic'
+import { postObjectNoReturn } from '@/modules/endpoint'
 import React from 'react'
 import { RiDeleteBin2Line } from 'react-icons/ri'
+import { toast } from 'sonner'
 
 interface prop{
 	topics:topicStructure[]
@@ -10,6 +12,34 @@ interface prop{
 
 function Topic({topics}:prop) {
 	const basic = new Basic();
+  
+  
+  // delete topic
+  const delete_topic = (topic_id: number) => {
+    const deleteObject = {
+      id: topic_id,
+    };
+    toast.info('delete topic initialised',{
+      duration:2000,
+      className:'bg-primary text-dText'
+    })
+    const res = postObjectNoReturn("delete-topic",true,deleteObject);
+    res.then(data =>{
+      if(data.success){
+        toast.success(data.message,{
+          duration:4000,
+          className:'bg-sucess text-dText'
+        });
+      }else{
+          toast.error(data.message,{
+            duration:4000,
+            className:'bg-error text-dText'
+          });        
+      }
+    })
+    
+  };
+  
   return (
 	<div>
         <div className="sm:w-[90%] flex sm:mx-10 mt-10 min-h-[100px] flex-wrap items-center justify-center">
@@ -36,8 +66,8 @@ function Topic({topics}:prop) {
 				<div className='w-full h-[50px]  relative'>
 					<button
 						onClick={() =>
-							alert("deleting topic")
-						//   delete_topic(topic.topic_name, topic.topic_id)
+							
+						delete_topic(topic.topic_id)
 						}
 						className=" bg-none  rounded-md flex mx-2  p-2 text-[10px] mt-4 cursor-pointer text-white hover:bg-primary absolute right-4 shadow-md dark:border dark:border-dSecondary"
 					>

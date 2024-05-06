@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { postObjectReturn } from '@/modules/endpoint'
 import { TopicInterface, saveLessonInterface } from '@/interface/interface'
 import Basic from '@/modules/Basic'
+import { toast } from 'sonner'
 
 function Prompt() {
 	const [topics,setTopics] = useState<null|string[]>(null);
@@ -19,11 +20,28 @@ function Prompt() {
 			message:message
 		}
 		 const res = postObjectReturn("get-topic",false,data) as Promise<TopicInterface>;
+		 toast.info('get topic initialised',{
+			duration:4000,
+			className:'bg-primary text-dText'
+		})
+		 toast.promise(res.then(data =>{
+			if(data.success){
+				
+				toast.success('lesson retrieved',{
+					duration:4000,
+					className:'bg-sucess text-dText'
+				})
+				
+			}else{
+				toast.error('unable to retrieve topics...try a different  and precise keyword',{
+					duration:4000,
+					className:'bg-error text-dText'
+				},
+			)}
+		 }))
 		res.then(data =>{
 			if(data.success){
 				setTopics(JSON.parse(data.message));
-			}else{
-				// tell the user to try again
 			}
 		});
 	}
@@ -33,6 +51,10 @@ function Prompt() {
 		// Create a new array without the element at the specified index
 		const updatedResponse = [...topics!.slice(0, index), ...topics!.slice(index + 1)];
 		setTopics(updatedResponse);
+		toast.success("topic removed",{
+			duration:4000,
+			className:'bg-sucess text-dText'
+		});
 	  };
 	  
 	//   redirect user to lesson module where he will start studying
@@ -48,7 +70,6 @@ function Prompt() {
 			topic_name:message,
 			topics_choosen:topics
 		}
-		console.log(topicData);
 		const res = postObjectReturn('save-topic',true,topicData) as Promise <saveLessonInterface>;
 		res.then((data)=>{
 			if(data.success){

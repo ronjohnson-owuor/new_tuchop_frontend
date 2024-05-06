@@ -10,6 +10,7 @@ import Edit from '../components/dashboard/Edit';
 import Disclaimer from '../components/dashboard/Disclaimer';
 import Basic from '@/modules/Basic';
 import Navigation from '../components/navigation/Navigation';
+import { Toaster } from 'sonner';
 function Dashboard() {
 	
 	const[profileData,setprofileData] = useState <profileObject | null>(null);
@@ -24,6 +25,7 @@ function Dashboard() {
 	
   return (
 	<div className='w-full min-h-screen text-lText dark:text-gray'>
+		<Toaster position='top-center'/>
 		<Navigation/>
 	<div className='my-10 mx-4 grid grid-cols-1 xl:grid-cols-3 gap-4 md:grid-cols-2'>
 		<User

@@ -6,6 +6,7 @@ import { RiDeleteBin3Line, RiSave2Line, RiSearch2Line, RiYoutubeLine } from 'rea
 import Subtopic from './Subtopic';
 import Filemanager from './Filemanager';
 import Listvideo from './Listvideo';
+import { toast } from 'sonner';
 
 interface prop {
 	id:string,
@@ -50,6 +51,10 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 	},[id]);
 	
 	const getVideo = (id:number) =>{
+		toast.info('getting your video',{
+			duration:4000,
+			className:'bg-primary text-dText'
+		});
 		if(phrase != ""){
 			setwantVideo(prev =>({
 				...prev,
@@ -67,7 +72,10 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 				}
 			});
 		}else{
-			alert("enter a search term");
+			toast.error('please enter a search term',{
+				duration:4000,
+				className:'bg-error text-dText'
+			});
 		}
 	}
 	
@@ -91,6 +99,15 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 			if(typeof (data) == 'object'){
 				setsavedchats([...data.data]);
 				aireply.pop();
+				toast.success('chat saved',{
+					duration:4000,
+					className:'bg-sucess text-dText'
+				});
+			}else{
+				toast.error('chat not saved',{
+					duration:4000,
+					className:'bg-error text-dText'
+				});
 			}
 		});
 		
@@ -98,7 +115,19 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 	
 	const handleDelete = (id:number) =>{
 		const deleteres = postObjectNoReturn('delete-chat',true,{id:id});
-		deleteres.then(data => console.log(data));
+		deleteres.then(data => {
+			if (data.success){
+				toast.success(data.message,{
+					duration:4000,
+					className:'bg-sucess text-dText'
+				});
+			}else{
+				toast.error(data.message,{
+					duration:4000,
+					className:'bg-error text-dText'
+				});
+			}
+		});
 		const res = postObjectReturn("saved-chat",true,chatid) as Promise <savedconvoInterface>;
 			res.then(data =>{
 				if(typeof (data) == 'object'){
