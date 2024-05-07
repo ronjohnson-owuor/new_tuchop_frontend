@@ -8,6 +8,7 @@ import Filemanager from './Filemanager';
 import Listvideo from './Listvideo';
 import { toast } from 'sonner';
 import Introduction from './Introduction';
+import "../../../css/scroll.css";
 
 interface prop {
 	id:string,
@@ -58,8 +59,9 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 				
 			const res = postObjectReturn("saved-chat",true,chatid) as Promise <savedconvoInterface>;
 			res.then(data =>{
+				
 				if(typeof (data) == 'object'){
-					setsavedchats([...data.data]);
+					setsavedchats(data.data);
 				}
 			});
 		}
@@ -111,7 +113,7 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 		const saveres = postObjectReturn("saved-chat",true,chatid) as Promise <savedconvoInterface>;
 		saveres.then(data =>{
 			if(typeof (data) == 'object'){
-				setsavedchats([...data.data]);
+				setsavedchats(data.data);
 				aireply.pop();
 			}
 		});
@@ -136,7 +138,7 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 		const res = postObjectReturn("saved-chat",true,chatid) as Promise <savedconvoInterface>;
 			res.then(data =>{
 				if(typeof (data) == 'object'){
-					setsavedchats([...data.data]);
+					setsavedchats(data.data);
 				}
 			});
 	}
@@ -166,6 +168,8 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 	
 	  useEffect(() => {
 		ShowNewUserMessage();
+		console.log(savedchats);
+		console.log("current",current,"    ","module id :" ,id);
 	  }, [savedchats, aireply, focus]);
 	  
 	
@@ -173,7 +177,7 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 	
 	
   return (
-	<div className='w-[90%] mx-[5%]'>
+	<div id='div_scroll' className='w-[90%] mx-[5%]'>
 		<div className='w-full m-4'>
 			<h1 className=' text-md md:text-xl font-bold text-primary'>{topiclist!=null ? topiclist[current] : 'Loading subtopic 👋'}</h1>
 		</div>
@@ -181,9 +185,10 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 		
 		{answerAreaIsBlank && <Introduction focus={focus}/>}
 		
-		{savedchats.length != 0 && savedchats.map((data,index) =>
-		current ? data.submodule_id == current : data.submodule_id == 0  && (
-			<div className=' shadow-sm p-4 my-4 rounded-md'>
+		{savedchats != null && savedchats.length != 0 && savedchats.map((data,index) =>
+		// this line below is a very critical line for the whole of tuchop AI any modification without caution may lead to servere abnormal functioning
+		Number(data.module_id) == Number(id)  &&  Number(data.submodule_id) == current  && (
+			<div id='div_scroll' className=' shadow-sm p-4 my-4 rounded-md'>
 			<div className='flex justify-end md:justify-between my-4 items-center w-full flex-col md:flex-row'>
 				<h3 className='font-bold text-sm my-4' dangerouslySetInnerHTML={{'__html': data!?.question}}></h3>
 				<div className='flex items-center justify-end md:justify-center gap-2'>

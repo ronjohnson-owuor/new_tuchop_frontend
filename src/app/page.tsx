@@ -5,7 +5,7 @@ import Navigation from "./components/navigation/Navigation";
 
 const page = () => {
    return (
-     <div className="w-full min-h-screen bg-lBackground dark:text-dText dark:bg-dBackground overflow-x-clip">
+     <div id="div_scroll" className="w-full min-h-screen bg-lBackground dark:text-dText dark:bg-dBackground overflow-x-clip">
       <Toaster/>
       <Navigation/>
       <Prompt/>
