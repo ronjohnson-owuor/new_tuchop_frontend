@@ -60,7 +60,7 @@ function User({data,id,queries}:Props) {
 	<div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-2 my-4 p-2">
 		<div className="border border-lgray col-span-2 p-2 rounded dark:border-dSecondary">
 			<p className="text-gray text-md">wallet</p>
-			<span className="text-gray font-bold">ksh. {data?.plan_type}</span>
+			<span className="text-gray font-bold">ksh. {basic.trimprice(Number(data?.plan_type))}</span>
 		</div>
 		
 		<div className="border border-lgray p-2 rounded dark:border-dSecondary">

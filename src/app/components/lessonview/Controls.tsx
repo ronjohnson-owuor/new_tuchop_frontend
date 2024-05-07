@@ -25,6 +25,11 @@ function Controls({setaireply,mediafocus,setmediafocus,setmenu}:controlsInterfac
 				if(typeof(data.message) == 'object'){
 					setaireply((prev:AIconversationResponse[]) =>[...prev,data.message]);
 					window.scrollTo(0,document.body.scrollHeight);
+				}else{
+					toast.error(data.message ||'there was an eror maybe internet or your wallet is empty 💴',{
+						duration:4000,
+						className:'bg-error text-dText'
+					});
 				}
 				
 			});			
@@ -34,6 +39,11 @@ function Controls({setaireply,mediafocus,setmediafocus,setmenu}:controlsInterfac
 				if(typeof(data.message) == 'object'){
 					setaireply((prev:AIconversationResponse[]) =>[...prev,data.message]);
 					window.scrollTo(0,document.body.scrollHeight);
+				}else{
+					toast.error(data.message ||'there was an eror maybe internet or your wallet is empty 💴',{
+						duration:4000,
+						className:'bg-error text-dText'
+					});
 				}
 				
 			});		

@@ -31,7 +31,7 @@ function Lesson({id}:props) {
 		</div>
 		
 		{/* lesson view navigation */}
-		<div className={`border w-full md:col-span-1 bg-lBackground dark:bg-dBackground rounded-md border-lSecondary dark:border-none flex flex-col h-[80dvh] items-center justify-start ${showmenu &&"absolute sm:static top-[80px] sm:top-0"}
+		<div className={`w-full h-screen  bg-lBackground dark:bg-dBackground rounded-md ${showmenu ? "absolute sm:static top-[80px] sm:top-0 " : "hidden sm:flex sm:flex-col sm:items-center sm:justify-start"}
 		`}>
 			<div className='flex items-center w-full justify-around'>
 			<h1 className='text-2xl font-bold bg-gradient-to-r from-primary to-accent via-error bg-clip-text text-transparent'>menu</h1>

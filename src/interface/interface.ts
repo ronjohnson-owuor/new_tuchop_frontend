@@ -33,7 +33,7 @@ interface saveLessonInterface{
   interface topicList{
 	message:string,
 	success:boolean,
-	data:(string|number)[]
+	data:string[]
 }
 
  interface topicStructure {

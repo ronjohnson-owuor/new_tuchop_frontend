@@ -7,6 +7,7 @@ import Subtopic from './Subtopic';
 import Filemanager from './Filemanager';
 import Listvideo from './Listvideo';
 import { toast } from 'sonner';
+import Introduction from './Introduction';
 
 interface prop {
 	id:string,
@@ -21,9 +22,11 @@ interface prop {
 function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubtopic,setmenu}:prop) {
 	const chatid :savedChatsIdentifier ={
 		module_id: id !=null ? Number(id):undefined,
-	  };	  
+	  };
+	  const[current,setcurrent] = useState(focus?focus:0);
+	  const [answerAreaIsBlank, setanswerAreaIsBlank] = useState(true);	  
 	const[videos,setvideos]  = useState<youtubeVideoListFormart[]| null>(null);
-	const[topiclist,settopiclist] = useState<(string|number)[]|null>(null);
+	const[topiclist,settopiclist] = useState<string[]|null>(null);
 	const [savedchats,setsavedchats] = useState<savedDataInterface[]|[]>([]);
 	const [aireply,setaireply] = useState<AIconversationResponse[]|[]>([]);
 	const[showphrase,setshowphrase] = useState(false);
@@ -35,12 +38,24 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 		index:0
 	});
 	
+	useEffect(()=>{
+		if(focus){
+			setcurrent(focus);
+		}else{
+			setcurrent(0);
+		}
+	},[focus]);
+	
 	
 	useEffect(()=>{
 		if(id != null){
 			const getTopicList = postObjectReturn("get-topic-list",true,
 			{ id: id }) as Promise<topicList>;
-			getTopicList.then(data =>settopiclist(data.data));
+			
+			getTopicList.then(data =>{
+				settopiclist(data.data);
+			});
+				
 			const res = postObjectReturn("saved-chat",true,chatid) as Promise <savedconvoInterface>;
 			res.then(data =>{
 				if(typeof (data) == 'object'){
@@ -48,7 +63,7 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 				}
 			});
 		}
-	},[id]);
+	},[id,current]);
 	
 	const getVideo = (id:number) =>{
 		toast.info('getting your video',{
@@ -90,7 +105,6 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 			answer:dataToBeSaved.answer,
 			follow_up_questions:JSON.stringify(dataToBeSaved.follow_up_questions)
 		};
-		console.log(saveObject)
 		const res = postObjectNoReturn('save-prompt',true,saveObject);
 		// tell user something
 		res.then(data =>console.log(data));
@@ -99,15 +113,6 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 			if(typeof (data) == 'object'){
 				setsavedchats([...data.data]);
 				aireply.pop();
-				toast.success('chat saved',{
-					duration:4000,
-					className:'bg-sucess text-dText'
-				});
-			}else{
-				toast.error('chat not saved',{
-					duration:4000,
-					className:'bg-error text-dText'
-				});
 			}
 		});
 		
@@ -137,7 +142,32 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 	}
 	
 	
+	// check if the user has a lesson
+	const ShowNewUserMessage = () => {
+		if (savedchats?.length == 0  && aireply.length == 0) {
+		  setanswerAreaIsBlank(true);
+		} else {
+		  for ( let savedConvoLength = 0;savedConvoLength < savedchats.length; savedConvoLength++ ) {
+			const eachSavedConversation = savedchats[savedConvoLength];
+			if (Number(eachSavedConversation.submodule_id) !=  Number(focus)) {
+			  setanswerAreaIsBlank(true);
+			} else {
+			  setanswerAreaIsBlank(false);
+			  break;
+			}
+		  }
+		}
 	
+		// this checks if the user has already asked some question.
+		if (aireply.length != 0) {
+		  setanswerAreaIsBlank(false);
+		}
+	  };
+	
+	  useEffect(() => {
+		ShowNewUserMessage();
+	  }, [savedchats, aireply, focus]);
+	  
 	
 	
 	
@@ -145,16 +175,18 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
   return (
 	<div className='w-[90%] mx-[5%]'>
 		<div className='w-full m-4'>
-			<h1 className='text-xl font-bold text-primary'>{topiclist!=null && topiclist[focus]}</h1>
+			<h1 className=' text-md md:text-xl font-bold text-primary'>{topiclist!=null ? topiclist[current] : 'Loading subtopic 👋'}</h1>
 		</div>
 		{/* get saved chats */}
 		
+		{answerAreaIsBlank && <Introduction focus={focus} title={topiclist != null ? topiclist[current]:''}/>}
+		
 		{savedchats.length != 0 && savedchats.map((data,index) =>
-		data.submodule_id == focus && (
+		current ? data.submodule_id == current : data.submodule_id == 0  && (
 			<div className=' shadow-sm p-4 my-4 rounded-md'>
-			<div className='flex justify-between my-4 items-center w-full'>
-				<h3 className='font-bold  my-4' dangerouslySetInnerHTML={{'__html': data!?.question}}></h3>
-				<div className='flex items-center gap-2'>
+			<div className='flex justify-end md:justify-between my-4 items-center w-full flex-col md:flex-row'>
+				<h3 className='font-bold text-sm my-4' dangerouslySetInnerHTML={{'__html': data!?.question}}></h3>
+				<div className='flex items-center justify-end md:justify-center gap-2'>
 					<button className='flex items-center p-1 px-2 shadow-md hover:bg-primary hover:text-dText text-sm rounded-xl dark:border dark:border-dSecondary'
 					onClick={()=>handleDelete(data.id)}
 					><RiDeleteBin3Line/>&nbsp;delete</button>
@@ -225,13 +257,14 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 				subtopics={topiclist}
 				close={setshowsubtopic}
 				setfocus={setfocus}
+				id={id}
 			/>
 		}
 		{
 			showfile && <Filemanager
 			setmediafocus={setmediafocus}
 			topic_id={chatid.module_id!}
-			subtopic_id={focus}
+			subtopic_id={current}
 			close={setshowFiles}
 			/>
 		}

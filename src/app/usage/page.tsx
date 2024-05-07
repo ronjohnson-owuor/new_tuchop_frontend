@@ -73,7 +73,7 @@ function page() {
 			<div className='shadow-md p-4 rounded-md dark:border dark:border-dSecondary'>
 				<h1 className='text-lg font-bold'>BALLANCE</h1>
 				<p className='text-lText dark:text-dText'>for more infor check your  dashboard</p>
-				{profileData?.plan_type ? <span className='text-[50px] md:text-[100px] text-primary my-10'>ksh. {profileData?.plan_type}</span>:<span className='text-[50px] mdtext-[200px] text-primary my-10'>0.00</span>}
+				{profileData?.plan_type ? <span className='text-[50px] font-bold md:text-[50px] text-primary my-10'>ksh. {basic.trimprice(Number(profileData?.plan_type))}</span>:<span className='text-[50px] mdtext-[200px] text-primary my-10'>0.00</span>}
 			</div>
 			
 			

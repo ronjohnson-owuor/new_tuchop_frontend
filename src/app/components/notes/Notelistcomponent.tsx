@@ -7,6 +7,7 @@ import { RiDeleteBin3Line, RiEdit2Line } from "react-icons/ri";
 import Editnotes from "./EditNotes";
 import Readnotes from "./Readnotes";
 import { toast } from "sonner";
+import Nolesson from "../lessonview/Nolesson";
 
 
 
@@ -35,6 +36,7 @@ function Notelistcomponent({notes}:notesInterface) {
       }
     });
   }
+  
   return (
     <>
     
@@ -44,8 +46,8 @@ function Notelistcomponent({notes}:notesInterface) {
 				<Link href="/lessons" className="p-2 shadow-sm rounded-md mx-2 dark:border dark:border-dSecondary hover:bg-primary hover:text-dText">📙 lessons</Link>
 				<Link href="/create-notes" className="p-2 shadow-sm rounded-md mx-2 dark:border dark:border-dSecondary hover:bg-primary hover:text-dText">✨ create</Link>
 			</div></center>
+      {notes.length == 0 && <div className="w-full min-h-[100px]"><Nolesson link="/create-notes" haslesson={false} text="no notes generated"/></div>}
     <div className="sm:w-[90%] flex sm:mx-10 mt-10 min-h-[100px] flex-wrap items-center justify-center gap-4">
-      
       { notes != null && 
         notes?.map((note,key) =>(
           <div

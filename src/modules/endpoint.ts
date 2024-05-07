@@ -56,7 +56,7 @@ import useToken from "./token";
 					});
 				}else{
 					 //tell user to sign up or login 
-					 return {success:false,messsage:"you are logged out"};
+					 return "you are logged out";
 				}
 			}else{
 				response = await api.post(path,data);
@@ -64,16 +64,16 @@ import useToken from "./token";
 			
 		   if(response?.status === 200){
 			if(response.data.success){
-			return {success:true,message:response.data.message};
+			return response.data.message;
 			}else{
-				return {success:false,message:response.data.message};
+				return response.data.message;
 			}
 		   }else{
-			return {success:false,messsage:"unable to perform your request"+response?.data}
+			"unable to perform your request"+response?.data
 		   }
 			
 		} catch (error){
-			return  {success:false,messsage:"unable to perform your request"+ error};	
+			return  "unable to perform your request"+ error;	
 		}
 	 }
 	 

@@ -12,7 +12,7 @@ import Basic from '@/modules/Basic'
 
 function Navigation() {
 	const {theme,setTheme} = useTheme();
-	const [shownav,setShownav] = useState(true);
+	const [shownav,setShownav] = useState(false);
 	const{isToken} = useToken();
 	
 	const [userData,setuserData] = useState<data|null>(null);
@@ -34,7 +34,7 @@ function Navigation() {
 			<span className='sm:text-md text-transparent font-bold sm:block bg-gradient-to-r from-primary to-accent bg-clip-text'>tuchop AI</span>
 		</Link>
 		
-		<div  className={` text-gray   flex flex-col md:flex-row items-center   ${shownav ? 'backdrop-blur-md md:backdrop-blur-none w-full md:w-auto absolute md:relative top-[80px] md:top-0 z-100 bg-lBackground dark:bg-dBackground md:bg-transparent' :'hidden'} items-center gap-10 h-full text-sm font-regular pt-4`}>
+		<div  className={` text-gray   flex flex-col md:flex-row items-center   ${shownav ? 'backdrop-blur-md md:backdrop-blur-none w-full md:w-auto absolute md:static top-[80px] md:top-0 z-100 bg-lBackground dark:bg-dBackground md:bg-transparent' :'hidden md:flex'} items-center gap-10 h-full text-sm font-regular pt-4`}>
 			<Link href="/lessons" className='hover:text-primary'>lessons</Link>
 			<Link href="/my-notes" className='hover:text-primary'>notes</Link>
 			<Link href="/usage" className='hover:text-primary'>usage</Link>
@@ -47,7 +47,7 @@ function Navigation() {
 		{!isToken && <button onClick={()=>window.location.href="/login"} className='w-[80px] h-[40px] bg-primary text-dText rounded-md text-sm'>log in</button>}
 		</div>
 		<div className=' flex items-center justify-end'>
-			<button onClick={()=>setTheme(theme == "light"?"dark":theme=="dark"?"light":"dark")} className='m-4'>{theme == "light"?(<RiMoonLine/>) : theme == "dark" ? (<RiSunLine/>):(<RiMoonLine/>)}</button>
+			<button onClick={()=>setTheme(theme == "light"?"dark":theme=="dark"?"light":"dark")} className='m-4 flex gap-2 items-center text-sm sm:border p-2 rounded-xl border-lSecondary dark:border-dSecondary cursor-pointer'>{theme == "light"?(<RiMoonLine/>) : theme == "dark" ? (<RiSunLine/>):(<RiMoonLine/>)}<span className='hidden sm:block'>{theme == "dark"?"light":"dark"}</span></button>
 			<RiMenu3Line onClick={()=>setShownav(!shownav)} className='font-bold text-md md:hidden cursor-pointer sm:text-xl'/>
 		</div>
 	</div>
