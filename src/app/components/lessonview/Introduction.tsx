@@ -8,19 +8,19 @@ import { postObjectReturn } from '@/modules/endpoint';
 
 interface Props {
 	focus:Number,
-	title:string
 }
-function Introduction({focus,title}:Props) {
+function Introduction({focus}:Props) {
 	const [step,setStep] = useState(0);
 	const [text,setText] = useState('');
 	const [relatedTopic,setrelatedTopic] = useState< null | string[]>(null);
 	  const [ViewNotes,setViewNotes] = useState(false);
 	  const [notes, setNotes] = useState<null | string>(null);
+	  const[title,settitle] = useState('');
 	let steps = [
 		" ",//dummy step for initial loading of the animation,don't remove
 		" Hello, welcome to Tuchop AI my name is Ron and I will be your AI assistant.",
-		" Lets get you started with some notes.Click on the get notes button below.",
-		" Choose among the list given below.If you dont see any notes wait a moment or  check your internet and try again.If the issue persit contact us.",
+		" Lets get you started with some notes.Enter the title of the notes you want to read down below and press get notes be clear and precise",
+		" Choose among the list given below.If you dont see any notes wait a moment or  check your internet and try again, go to the previous step and enter a clear topic and  If the issue persit contact us.",
 		` As we wait for your notes on .You can use the input down below to ask me further questions on parts that you are not understanding or need clarification. If you want to save this notes.visit the notes menu in the navigation to  generate the notes.We have a free notes generator.`
 	];
 	
@@ -60,17 +60,19 @@ function Introduction({focus,title}:Props) {
 	const getRelatedTopics = () =>{
 		const res = postObjectReturn("get-topic-notes", true,{ title: title }) as Promise<topicsInterface>;
 			res.then(data =>{
-				console.log(data.data);
 				if( data.data && typeof(data.data) != 'string'){
 					setrelatedTopic(data.data);
 				}
-			
 		});
 	}
 
   return (
     <div className='w-[99%] sm:w-[600px] md:w-[90%] p-4 sm:mx-4 mb-4'>
 		<p className='my-4 leading-8'>{text}</p>
+		{step== 2 && <div className='my-4 w-[80%] mx-2 text-gray'>
+			<p>enter your notes title below and click get notes👇</p>
+			<input className='w-[90%] p-2 bg-lSecondary dark:bg-dSecondary sm:w-[80%] h-[40px] rounded-md outline-none shadow-md my-4'  onChange={(e) =>settitle(e.target.value)} type="text" placeholder='eg linear algebra' />	
+		</div>}
 		{step == 3 && 
 		<div className="flex flex-wrap items-center w-[90%] p-4 justify-center gap-2 my-10 mx-10 ">
 			{relatedTopic != null && relatedTopic?.map((topics,id) =>(

@@ -179,7 +179,7 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 		</div>
 		{/* get saved chats */}
 		
-		{answerAreaIsBlank && <Introduction focus={focus} title={topiclist != null ? topiclist[current]:''}/>}
+		{answerAreaIsBlank && <Introduction focus={focus}/>}
 		
 		{savedchats.length != 0 && savedchats.map((data,index) =>
 		current ? data.submodule_id == current : data.submodule_id == 0  && (
