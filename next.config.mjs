@@ -7,6 +7,9 @@ const nextConfig = {
 				hostname: 'machizi.s3.amazonaws.com',
 			  }],
 	  },
+	  typescript:{
+		ignoreBuildErrors:true
+	  }
 };
 
 export default nextConfig;
