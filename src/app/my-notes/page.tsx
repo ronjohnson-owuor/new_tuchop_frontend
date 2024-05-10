@@ -17,17 +17,20 @@ function Page() {
 	  const res = postNoObjectReturn("get-saved-notes",true) as Promise<response>;
 	  res.then(data =>{
 		setNotes(data.data);
-		if(data.success){
-			toast.success(data.message,{
-			  duration:4000,
-			  className:'bg-sucess text-dText'
-			})
-		  }else{
-			toast.error(data.message,{
-			  duration:4000,
-			  className:'bg-error text-dText'
-			})
-		  }
+		if(typeof document != 'undefined'){
+			if(data.success){
+				toast.success(data.message,{
+				duration:4000,
+				className:'bg-sucess text-dText'
+				})
+			}else{
+				toast.error(data.message,{
+				duration:4000,
+				className:'bg-error text-dText'
+				})
+			}			
+		}
+
 	}); 		
 	},[])
 
