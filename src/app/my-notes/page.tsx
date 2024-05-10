@@ -37,7 +37,7 @@ function Page() {
 	return (
 	  <div>
 		<Navigation/>
-		<Toaster position='top-center'/>
+		{/* <Toaster position='top-center'/> */}
 		{/* if the user has not created any notes yet */}
 		{notes == null && (
 		  <div className="w-full h-[70vh] overflow-hidden  flex flex-col items-center justify-center ">

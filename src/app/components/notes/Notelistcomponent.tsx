@@ -1,4 +1,3 @@
-"use client"
 import { savedNotes } from "@/interface/interface";
 import Basic from "@/modules/Basic";
 import { postObjectNoReturn } from "@/modules/endpoint";
