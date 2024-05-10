@@ -1,6 +1,6 @@
 "use client"
 import { postNoObjectReturn } from '@/modules/endpoint';
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Navigation from '../components/navigation/Navigation';
 import { nohistory } from '../components/container';
 import Link from 'next/link';
@@ -33,7 +33,7 @@ function Page() {
 	return (
 	  <div>
 		<Navigation/>
-		<Toaster position='top-center'/>
+		{typeof Toaster !== 'undefined' && <Toaster position='top-center'/>}
 		{/* if the user has not created any notes yet */}
 		{notes == null && (
 		  <div className="w-full h-[70vh] overflow-hidden  flex flex-col items-center justify-center ">
