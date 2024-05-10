@@ -6,7 +6,7 @@ import { paymentUrl, profileFormat, profileObject } from '@/interface/interface'
 import { Toaster, toast } from 'sonner';
 import Basic from '@/modules/Basic';
 
-function page() {
+function Page() {
 	
 	const [amount,setamount] = useState(100);
 	
@@ -31,7 +31,7 @@ function page() {
 		const res = postObjectReturn('express-payment',true,data) as Promise<paymentUrl>
 		res.then(data =>{
 			if (data.success){
-				toast.success("redirecting to payments page",{
+				toast.success("redirecting to payments Page",{
 					duration:4000,
 					position:'top-center',
 					className:"bg-sucesss text-dText"
@@ -83,4 +83,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

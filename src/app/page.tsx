@@ -3,7 +3,7 @@ import Footer from "./components/footer/Footer";
 import Prompt from "./components/home/Prompt";
 import Navigation from "./components/navigation/Navigation";
 
-const page = () => {
+const Page = () => {
    return (
      <div id="div_scroll" className="w-full min-h-screen bg-lBackground dark:text-dText dark:bg-dBackground overflow-x-clip">
       <Toaster/>
@@ -14,4 +14,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default Page;

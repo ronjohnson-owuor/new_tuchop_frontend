@@ -17,7 +17,7 @@ function Pricing() {
           <li className="my-4"> <span>✔ &nbsp;</span>upload up to 40 files</li>
           <li className="my-4"> <span>✔ &nbsp;</span> unlimited video answers </li> 
           <li className="my-4"> <span>✔ &nbsp;</span>get answers from uploaded pdf papers</li>
-          <li className="my-4"> <span>✔ &nbsp;</span>no paid advertisement on your page</li>
+          <li className="my-4"> <span>✔ &nbsp;</span>no paid advertisement on your Page</li>
           <li className="my-4"> <span>✔ &nbsp;</span>support from the tech team while stuck</li>
         </ul>
          <button className="bg-primary w-[250px] rounded-md h-[50px] text-white transition duration-200
@@ -35,7 +35,7 @@ function Pricing() {
           <li className="my-4"> <span>✔ &nbsp;</span>unlimited  video answers </li>
           <li className="my-4"> <span>✔ &nbsp;</span>get answers from uploaded pdf papers</li>
           <li className="my-4"> <span>✔ &nbsp;</span>get answers from uploaded image  questions</li>
-          <li className="my-4"> <span>✔ &nbsp;</span>no paid advertisement on your page</li>
+          <li className="my-4"> <span>✔ &nbsp;</span>no paid advertisement on your Page</li>
           <li className="my-4"> <span>✔ &nbsp;</span>faster and quick responses to emails</li>
         </ul>
         
@@ -54,7 +54,7 @@ function Pricing() {
           <li className="my-4"> <span>✔ &nbsp;</span>unlimited  video answers </li>
           <li className="my-4"> <span>✔ &nbsp;</span>get answers from uploaded pdf papers</li>
           <li className="my-4"> <span>✔ &nbsp;</span>get answers from uploaded image  questions</li>
-          <li className="my-4"> <span>✔ &nbsp;</span>no paid advertisement on your page</li>
+          <li className="my-4"> <span>✔ &nbsp;</span>no paid advertisement on your Page</li>
           <li className="my-4"> <span>✔ &nbsp;</span>faster and quick responses to emails</li>
         </ul>
         

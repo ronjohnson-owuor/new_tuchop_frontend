@@ -6,7 +6,7 @@ import { RiMailLine, RiPhoneLine} from 'react-icons/ri'
 import Link from 'next/link'
 import Footer from '../components/footer/Footer'
 
-function page() {
+function Page() {
   return (
 	<div className='bg-lBackground dark:bg-dBackground text-lText dark:text-dText'>
 		<Navigation/>
@@ -28,4 +28,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

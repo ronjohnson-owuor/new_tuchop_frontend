@@ -7,7 +7,7 @@ import Navigation from '../components/navigation/Navigation';
 import { RiDeleteBin3Line, RiEdit2Line, RiSave3Fill } from 'react-icons/ri';
 import { Toaster, toast } from 'sonner';
 
-function page() {
+function Page() {
 	const basic = new Basic();
 	const [id,setId] = useState(-1);
 	const [subtopic,setsubtopic] = useState<string[]|[]>([]);
@@ -88,4 +88,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

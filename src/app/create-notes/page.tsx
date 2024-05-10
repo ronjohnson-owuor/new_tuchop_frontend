@@ -8,7 +8,7 @@ import { notesInterface, topicsInterface } from '@/interface/interface'
 import Displaynotes from '../components/notes/Displaynotes'
 import { Toaster, toast } from 'sonner'
 
-function page() {
+function Page() {
   const [search,setSearch] = useState<string|null>(null);
   const [topics,setTopics]  = useState<string[]|[]>([]);
   const [notes, setNotes] = useState<null | string>(null);
@@ -170,4 +170,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

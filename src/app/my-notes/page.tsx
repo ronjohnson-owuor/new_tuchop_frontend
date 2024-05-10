@@ -9,7 +9,7 @@ import Notelistcomponent from '../components/notes/Notelistcomponent';
 import Image from 'next/image';
 import { Toaster, toast } from 'sonner';
 
-function page() {
+function Page() {
 	const [notes,setNotes] = useState<null|savedNotes[]>(null);
 	
 	
@@ -67,4 +67,4 @@ function page() {
 	);
 }
 
-export default page
+export default Page

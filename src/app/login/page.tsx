@@ -5,7 +5,7 @@ import socialiteSignup from "../../modules/socialite";
 import Navigation from "../components/navigation/Navigation";
 import { Toaster } from "sonner";
 declare const google: any;
-function page() {
+function Page() {
   const socialiteLogin = new socialiteSignup();
   const accountsManagers = new accountManager();
   interface userDetail {
@@ -90,4 +90,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

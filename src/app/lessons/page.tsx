@@ -3,7 +3,7 @@ import Navigation from '../components/navigation/Navigation'
 import Lesson from '../components/lessons/Lesson'
 import { Toaster } from 'sonner'
 
-function page() {
+function Page() {
 	
 	
 	
@@ -19,4 +19,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

@@ -3,7 +3,7 @@ import Navigation from '../components/navigation/Navigation'
 import Link from 'next/link'
 import Footer from '../components/footer/Footer'
 
-function page() {
+function Page() {
   return (
 	<div>
 		<Navigation/>
@@ -24,11 +24,11 @@ function page() {
 			<h3 className='text-accent my-2'>7. GOVERNING LAW</h3>
 			<p>These terms and conditions are governed by and construed in accordance with the laws of Data protection Act of kenya 2023.</p>
 			<h3 className='text-accent my-2'>8. CONTACT INFORMATION</h3>
-			<p>For any questions about these terms and conditions, please contact ZeroN Labs at zeronlabs@gmail.com or check our <Link className='text-accent' href="/contact-us">contact page</Link>.</p>
+			<p>For any questions about these terms and conditions, please contact ZeroN Labs at zeronlabs@gmail.com or check our <Link className='text-accent' href="/contact-us">contact Page</Link>.</p>
 		</div>
 		<Footer/>
 	</div>
   )
 }
 
-export default page
+export default Page

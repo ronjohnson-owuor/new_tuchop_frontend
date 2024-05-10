@@ -3,7 +3,7 @@ import Navigation from '../components/navigation/Navigation'
 import Footer from '../components/footer/Footer'
 import Link from 'next/link'
 
-function page() {
+function Page() {
   return (
 	<div>
       <Navigation/>
@@ -28,11 +28,11 @@ function page() {
     <p>ZeroN Labs reserves the right to modify this privacy policy at any time. Changes will be effective immediately upon posting.</p>
 
     <h3 className='text-accent my-2'>7. QUESTIONS</h3>
-    <p>If you have any questions regarding this privacy policy, you may contact ZeroN Labs at zeronlabs@gmail.com or check our <Link className='text-accent' href="/contact-us">contact page</Link>.</p>
+    <p>If you have any questions regarding this privacy policy, you may contact ZeroN Labs at zeronlabs@gmail.com or check our <Link className='text-accent' href="/contact-us">contact Page</Link>.</p>
 		</div>
     <Footer/>
   </div>
   )
 }
 
-export default page
+export default Page

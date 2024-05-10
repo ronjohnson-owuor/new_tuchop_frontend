@@ -4,7 +4,7 @@ import { about} from '../components/container'
 import Image from 'next/image'
 import Footer from '../components/footer/Footer'
 
-function page() {
+function Page() {
   return (
 	<div className='w-full min-h-screen'>
 		<Navigation/>
@@ -30,4 +30,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

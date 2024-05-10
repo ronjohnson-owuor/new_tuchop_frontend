@@ -7,7 +7,7 @@ import Lesson from '../components/lessonview/Lesson';
 import { Toaster, toast } from 'sonner';
 
 
-function page() {
+function Page() {
   const [id, setId] = useState<number | null>(null);
   const [hasLesson,sethasLesson] = useState(true);
 
@@ -55,4 +55,4 @@ function page() {
   )
 }
 
-export default page;
+export default Page;
