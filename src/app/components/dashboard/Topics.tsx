@@ -8,12 +8,11 @@ function Topics() {
 	const [continue_delete, setcontinue_delete] = useState(false);
 	const [delete_id, setdelete_id] = useState(0);
 	const[topicleft,settopicleft] = useState<string|number>(0);
-	useEffect(() => {
 		const res = postObjectReturn("saved-topics", true, {lastIndex: maximumPerpage }) as Promise<setterFormat2>;
 		res.then((data) => {
 			settopicleft(data.topics_remaining);
-			setResponse(data.data)})
-	  }, []);
+			setResponse(data.data)
+		})
 	  
 	  const handleLoadMore = () => {
 		setmaximumPerpage(()=>maximumPerpage+2);

@@ -10,13 +10,13 @@ function Page() {
 		<div className="leading-loose w-[90%] md:w-[80%] min-h-[10rem] shadow-md mx-4 my-10  rounded-sm p-4">
 			<h1 className="my-4 font-bold mx-4 text-primary">Terms & conditions</h1>	
 				<h3 className='text-accent my-2'>1. ACCEPTANCE OF TERMS</h3>
-			<p>By using this website ("zeron labs"), you agree to comply with and be bound by the following terms and conditions of use.</p>
+			<p>By using this website (&ldquo; zeron labs &ldquo;), you agree to comply with and be bound by the following terms and conditions of use.</p>
 			<h3 className='text-accent my-2'>2. INTELLECTUAL PROPERTY</h3>
 			<p>All content on this Website, including but not limited to text, graphics, logos, images, audio clips, digital downloads, and data, is the property of ZeroN Labs and is protected by copyright laws.And any outside content is given credit to as necessary.</p>
 			<h3 className='text-accent my-2'>3. USER CONDUCT</h3>
 			<p>You agree not to use the Website for any unlawful purpose or any purpose prohibited by these terms and conditions.Zeron Labs will not be liable for damages you cause while using our service in an unlawfull way.This website is for educational purposes ONLY.</p>
 			<h3 className='text-accent my-2'>4. DISCLAIMER OF WARRANTIES</h3>
-			<p>This Website is provided "as is" without any representations or warranties, express or implied. ZeroN Labs makes no representations or warranties in relation to this Website or the information and materials provided on this Website.</p>
+			<p>This Website is provided &ldquo; as is &ldquo; without any representations or warranties, express or implied. ZeroN Labs makes no representations or warranties in relation to this Website or the information and materials provided on this Website.</p>
 			<h3 className='text-accent my-2'>5. LIMITATION OF LIABILITY</h3>
 			<p>ZeroN Labs will not be liable to you (whether under the law of contract, the law of torts, or otherwise) in relation to the contents of, or use of, or otherwise in connection with, this Website.</p>
 			<h3 className='text-accent my-2'>6. MODIFICATIONS TO TERMS</h3>

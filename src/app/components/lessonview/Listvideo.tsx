@@ -74,8 +74,8 @@ function Listvideo({videolist,setvideolist,close,questionid}:Props) {
 		{/* list the video if there are videos */}
 		<div className='w-full rounded-md p-4 grid grid-cols-1 gap-10 dark:bg-dBackground bg-lBackground'>
 		{videolist !=null && !isplaying && videolist.slice(0,10).map((videos,index) =>(
-			<div className='w-full min-h-[100px] p-2 flex gap-4 shadow-md dark:border dark:border-dSecondary'>
-				<img className='w-[20%] object-cover max-h-[400px]' src={videos.thumbnail} alt="thumbnail" />	
+			<div key={index} className='w-full min-h-[100px] p-2 flex gap-4 shadow-md dark:border dark:border-dSecondary'>
+				<Image className='w-[20%] object-cover max-h-[400px]' src={videos.thumbnail} alt="thumbnail" />	
 				<div className='w-[80%] flex flex-col gap-4'>
 					<span className='font-bold text-md my-2'>{videos.title}</span>
 					<div className='flex gap-4 items-center justify-center'>

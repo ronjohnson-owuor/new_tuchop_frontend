@@ -47,7 +47,7 @@ function Subtopic({id,subtopics,close,setfocus}:props) {
 			 }
 			 {
 				subtopics !=null && subtopics.map((subtopic,index) =>(
-					<h1 className='border p-4 my-4 rounded cursor-pointer border-lSecondary dark:border-dSecondary hover:bg-accent' onClick={()=>{
+					<h1 key={index} className='border p-4 my-4 rounded cursor-pointer border-lSecondary dark:border-dSecondary hover:bg-accent' onClick={()=>{
 						setfocus(index);
 						close(false);
 					}}>{subtopic}</h1>

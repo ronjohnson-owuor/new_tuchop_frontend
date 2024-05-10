@@ -32,7 +32,7 @@ function Listfiles({topic_id,close,setmediafocus}:prop) {
 				}
 			});
 		}
-	},[]);
+	},[topic_id]);
 	
 	
 	
@@ -57,7 +57,7 @@ function Listfiles({topic_id,close,setmediafocus}:prop) {
 		{
 			media.length !== 0 &&
 			media.map((file,index) =>(
-				<div className='flex items-center w-full overflow-x-scroll sm:overflow-x-hidden text-sm md:text-md min-h-[80px] my-4 p-2 justify-around border border-lSecondary dark:border-dSecondary rounded-md'>
+				<div key={index} className='flex items-center w-full overflow-x-scroll sm:overflow-x-hidden text-sm md:text-md min-h-[80px] my-4 p-2 justify-around border border-lSecondary dark:border-dSecondary rounded-md'>
 					{/* when the user is renaming the subtopic  */}
 					<div className={`flex items-center gap-4 justify-end sm:justify-start p-2 transition-all duration-500 ml-0 ${renaming.isrenaming && renaming.index == index ? ' ml-0' :'ml-[-1000px] collapse'}`}>
 						<input type="text"

@@ -1,4 +1,5 @@
 import {postObjectNoReturn } from "@/modules/endpoint";
+import Image from "next/image";
 import { useEffect, useState } from "react"
 import { RiCloseLine, RiEdit2Line, RiUpload2Line } from "react-icons/ri";
 import { toast } from "sonner";
@@ -58,7 +59,7 @@ function Edit() {
 				<input className="hidden" onChange={(e)=>handleImage(e.target.files![0])} id="imageProfile" type="file"/>
 				<label className="my-4" htmlFor="imageProfile"><RiUpload2Line/> &nbsp; click here to change profile image</label>
 			</div>
-			<img src={preview} className="m-4 w-[90%] min-h-0 max-h-[250px] object-cover" />
+			<Image alt="profile review"  src={preview} className="m-4 w-[90%] min-h-0 max-h-[250px] object-cover" />
 			<label className="m-2 text-lgray" htmlFor="name">user name</label>
 			<div id="metaDataHolder"  className="bg-light text-dark p-4 flex gap-4 rounded-md items-center">
 					<input id="name" className="h-[40px] p-2 outline-none w-[70%] md:w-auto rounded-md"
