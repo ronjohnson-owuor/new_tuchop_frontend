@@ -11,10 +11,7 @@ import { Toaster, toast } from 'sonner';
 
 function Page() {
 	const [notes,setNotes] = useState<null|savedNotes[]>(null);
-	
-	
-	useEffect(()=>{
-	  const res = postNoObjectReturn("get-saved-notes",true) as Promise<response>;
+	const res = postNoObjectReturn("get-saved-notes",true) as Promise<response>;
 	  res.then(data =>{
 		setNotes(data.data);
 			if(data.success){
@@ -31,13 +28,12 @@ function Page() {
 		
 
 	}); 		
-	},[])
 
   
 	return (
 	  <div>
 		<Navigation/>
-		{/* <Toaster position='top-center'/> */}
+		<Toaster position='top-center'/>
 		{/* if the user has not created any notes yet */}
 		{notes == null && (
 		  <div className="w-full h-[70vh] overflow-hidden  flex flex-col items-center justify-center ">
