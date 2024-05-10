@@ -17,7 +17,6 @@ function Page() {
 	  const res = postNoObjectReturn("get-saved-notes",true) as Promise<response>;
 	  res.then(data =>{
 		setNotes(data.data);
-		if(typeof document != 'undefined'){
 			if(data.success){
 				toast.success(data.message,{
 				duration:4000,
@@ -29,7 +28,7 @@ function Page() {
 				className:'bg-error text-dText'
 				})
 			}			
-		}
+		
 
 	}); 		
 	},[])
