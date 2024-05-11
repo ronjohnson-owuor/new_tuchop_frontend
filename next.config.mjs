@@ -5,7 +5,13 @@ const nextConfig = {
 			{
 				protocol: 'https',
 				hostname: 'machizi.s3.amazonaws.com',
-			  }],
+			  },
+			  {
+				protocol: 'https',
+				hostname: ' lh3.googleusercontent.com',
+			  }		  
+			],
+			
 	  },
 	  typescript:{
 		ignoreBuildErrors:true
