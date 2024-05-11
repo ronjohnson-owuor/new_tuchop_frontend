@@ -4,12 +4,8 @@ const nextConfig = {
 		remotePatterns: [
 			{
 				protocol: 'https',
-				hostname: 'machizi.s3.amazonaws.com',
-			  },
-			  {
-				protocol: 'https',
-				hostname: ' lh3.googleusercontent.com',
-			  }		  
+				hostname: '*',
+			  }	  
 			],
 			
 	  },
