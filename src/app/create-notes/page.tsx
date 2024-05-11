@@ -74,17 +74,11 @@ function Page() {
   const saveNotes = () =>{
     const res = postObjectNoReturn("save-notes",true,notesToBeSaved);
     res.then(data =>{
-      if(data.success){
+      if(data){
         toast.success("notes saved",{
           duration:4000,
           className:'bg-sucess text-dText'
         })
-      }else{
-        toast.error("unable to save notes",{
-          duration:4000,
-          className:'bg-error text-dText'
-        })
-        console.log(data);
       }
     });
 
