@@ -84,6 +84,7 @@ function Page() {
           duration:4000,
           className:'bg-error text-dText'
         })
+        console.log(data);
       }
     });
 
