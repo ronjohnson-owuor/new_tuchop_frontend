@@ -27,7 +27,6 @@ export default function RootLayout({
 
         gtag('config', 'G-XRB5GW3YVD');`}
       </Script>
-        <link rel="shortcut icon" href="../../public/favicon.ico" type="image/x-icon" />
       <script src="https://accounts.google.com/gsi/client" async defer></script>
       </head>
       <body className="dark:bg-dBackground">     
