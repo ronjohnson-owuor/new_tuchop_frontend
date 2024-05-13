@@ -32,15 +32,10 @@ function Listvideo({videolist,setvideolist,close,questionid}:Props) {
 		}
 		const res = postObjectNoReturn('save-video',true,videosTobeSavedObject);
 		res.then(data =>{
-		  if (data.success){
-			toast.success(data.message,{
+		  if (data){
+			toast.info(data,{
 				duration:4000,
-				className:'bg-sucess text-dText'
-			});
-		  }else{
-			toast.error(data.message,{
-				duration:4000,
-				className:'bg-error text-dText'
+				className:'bg-primary text-dText'
 			});
 		  }
 		});
@@ -75,7 +70,7 @@ function Listvideo({videolist,setvideolist,close,questionid}:Props) {
 		<div className='w-full rounded-md p-4 grid grid-cols-1 gap-10 dark:bg-dBackground bg-lBackground'>
 		{videolist !=null && !isplaying && videolist.slice(0,10).map((videos,index) =>(
 			<div key={index} className='w-full min-h-[100px] p-2 flex gap-4 shadow-md dark:border dark:border-dSecondary'>
-				<Image className='w-[20%] object-cover max-h-[400px]' src={videos.thumbnail} alt="thumbnail" />	
+				<img className='w-[20%] object-cover max-h-[400px]' src={videos.thumbnail} alt="thumbnail" />	
 				<div className='w-[80%] flex flex-col gap-4'>
 					<span className='font-bold text-md my-2'>{videos.title}</span>
 					<div className='flex gap-4 items-center justify-center'>

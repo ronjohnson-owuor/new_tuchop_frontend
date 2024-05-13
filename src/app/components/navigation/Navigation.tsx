@@ -39,7 +39,7 @@ function Navigation() {
 			<Link href="/my-notes" className='hover:text-primary'>notes</Link>
 			<Link href="/usage" className='hover:text-primary'>usage</Link>
 			{isToken && <Link href="/dashboard" className='hover:text-primary cursor-pointer flex items-center justify-start gap-2'>
-			<Image src={userData?.picture ? userData.picture : avatar} width={40} height={50} className='rounded-[100vh] object-cover'  alt="avatar" />
+			<Image src={userData?.picture ? userData.picture : avatar} width={20} height={20} className='rounded-[100vh] object-cover'  alt="avatar" />
 			<span className='text-sm sm:text-md'>{userData?.name?userData.name :'loading'}</span>
 		</Link>}
 		</div>

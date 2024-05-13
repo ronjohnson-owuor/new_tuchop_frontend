@@ -25,16 +25,11 @@ function Topic({topics}:prop) {
     })
     const res = postObjectNoReturn("delete-topic",true,deleteObject);
     res.then(data =>{
-      if(data.success){
-        toast.success(data.message,{
+      if(data){
+        toast.info(data,{
           duration:4000,
-          className:'bg-sucess text-dText'
+          className:'bg-primary text-dText'
         });
-      }else{
-          toast.error(data.message,{
-            duration:4000,
-            className:'bg-error text-dText'
-          });        
       }
     })
     
