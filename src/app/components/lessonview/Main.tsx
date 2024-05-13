@@ -227,7 +227,8 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 			</div>
 			
 			<span className='my-4 leading-10 text-gray' dangerouslySetInnerHTML={{'__html': data!?.answer}}></span>
-			<div className='w-full min-h-[100px] bg-lSecondary dark:bg-dSecondary my-4 rounded-md p-4'>
+           {  data.videosId && data.videosId.length !=0 &&	
+		   	<div className='w-full min-h-[100px] bg-lSecondary dark:bg-dSecondary my-4 rounded-md p-4'>
 				<h1 className='text-md my-2 font-bold text-lText dark:text-dText border-b-2 p-2 border-lText dark:border-dText'>saved videos</h1>
 				{/* map through the videos here */}
 				<div id='div_scroll' className='flex flex-grow-1 overflow-x-scroll'>
@@ -243,7 +244,7 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 					</div>
 					))}					
 				</div>
-			</div>
+			</div>}
 			<div className='my-4 w-[90%] flex gap-4 justify-start'>
 			{data.follow_up_question.length !=0 && data.follow_up_question.map((questions,index) =>(
 				<span key={index} className='shadow-sm rounded-md dark:border dark:border-dSecondary p-2'>{questions}</span>
