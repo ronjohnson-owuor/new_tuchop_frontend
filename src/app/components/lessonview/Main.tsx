@@ -2,13 +2,14 @@ import { AIconversationResponse, focusInterface, savedChatsIdentifier, savedData
 import { postObjectNoReturn, postObjectReturn } from '@/modules/endpoint';
 import React, { useEffect, useState } from 'react'
 import Controls from './Controls';
-import { RiDeleteBin3Line, RiSave2Line, RiSearch2Line, RiYoutubeLine } from 'react-icons/ri';
+import { RiDeleteBin3Line, RiRepeatFill, RiReplay10Line, RiSave2Line, RiSearch2Line, RiYoutubeLine } from 'react-icons/ri';
 import Subtopic from './Subtopic';
 import Filemanager from './Filemanager';
 import Listvideo from './Listvideo';
 import { toast } from 'sonner';
 import Introduction from './Introduction';
 import "../../../css/scroll.css";
+import Replay from './Replay';
 
 interface prop {
 	id:string,
@@ -33,7 +34,9 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 	const[showphrase,setshowphrase] = useState(false);
 	const[mediafocus,setmediafocus] = useState<focusInterface|null>(null);
 	const[phrase,setPhrase] = useState("");
+	const[fullscreenenabled,setfullscreenenabled] = useState(false);
 	const[savedId,setsavedId] = useState<number|null>(null);
+	const[videoid,setvideoid] = useState<string|undefined>(undefined);
 	const[wantVideo,setwantVideo]  = useState({
 		istrue:false,
 		index:0
@@ -168,16 +171,22 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 	
 	  useEffect(() => {
 		ShowNewUserMessage();
-		console.log(savedchats);
-		console.log("current",current,"    ","module id :" ,id);
 	  }, [savedchats, aireply, focus]);
 	  
+	  
+	//   handle fullscreen
+	const handleFullscreen = (videoId:string) =>{
+		setvideoid(videoId);
+		setfullscreenenabled(true);
+		
+	}
 	
 	
 	
 	
   return (
 	<div id='div_scroll' className='w-[90%] mx-[5%]'>
+ 		{fullscreenenabled &&	<Replay fullscreenenabled={setfullscreenenabled} videoId={videoid}/>}
 		<div className='w-full m-4'>
 			<h1 className=' text-md md:text-xl font-bold text-primary'>{topiclist!=null ? topiclist[current] : 'Loading subtopic 👋'}</h1>
 		</div>
@@ -218,6 +227,23 @@ function Main({id,showfile,setshowFiles,focus,setfocus,showsubtopic,setshowsubto
 			</div>
 			
 			<span className='my-4 leading-10 text-gray' dangerouslySetInnerHTML={{'__html': data!?.answer}}></span>
+			<div className='w-full min-h-[100px] bg-lSecondary dark:bg-dSecondary my-4 rounded-md p-4'>
+				<h1 className='text-md my-2 font-bold text-lText dark:text-dText border-b-2 p-2 border-lText dark:border-dText'>saved videos</h1>
+				{/* map through the videos here */}
+				<div id='div_scroll' className='flex flex-grow-1 overflow-x-scroll'>
+					{data.videosId && data.videosId.length != 0 && data.videosId.map((video,videoindex) =>(
+						<div key={videoindex} className="w-[300px] min-h-[100px] p-4 flex flex-col mx-4 shadow-md rounded-md">
+							<img src ={`https://img.youtube.com/vi/${video.video_id}/hqdefault.jpg`} width={350} height={300}
+							/>
+							<div className="w-full  flex items-center justify-start my-4 gap-2">
+							<button
+							onClick={()=>handleFullscreen(video.video_id)}
+							 className=" text-gray border border-lgray text-sm p-1 rounded-md flex items-center hover:text-primary cursor-pointer "><RiRepeatFill/> &nbsp;replay</button>	
+							</div>
+					</div>
+					))}					
+				</div>
+			</div>
 			<div className='my-4 w-[90%] flex gap-4 justify-start'>
 			{data.follow_up_question.length !=0 && data.follow_up_question.map((questions,index) =>(
 				<span key={index} className='shadow-sm rounded-md dark:border dark:border-dSecondary p-2'>{questions}</span>
