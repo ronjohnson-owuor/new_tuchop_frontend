@@ -5,6 +5,7 @@ import { postNoObjectReturn, postObjectReturn } from '@/modules/endpoint';
 import { paymentUrl, profileFormat, profileObject } from '@/interface/interface';
 import { Toaster, toast } from 'sonner';
 import Basic from '@/modules/Basic';
+import { RiBankLine, RiSecurePaymentLine } from 'react-icons/ri';
 
 function Page() {
 	
@@ -54,10 +55,11 @@ function Page() {
 		<Navigation/>
 		<Toaster/>
 		<div className='my-4 w-[90%] mx-4 min-h-[70vh] grid grid-cols-1 md:grid-cols-2 gap-4 place-items-center'>
-			<div className='shadow-md w-full sm:w-[80%] p-4 rounded-md dark:border dark:border-dSecondary'>
-				<h1 className='font-bold text-lg my-2'>Top up your wallet</h1>
-				<p className='text-primary'>enter your amount on ksh.(Kenyan shillings)</p>
-				<form onSubmit={handlePayment} >
+			<div className='shadow-md w-full h-full p-4 rounded-md dark:border dark:border-dSecondary'>
+				<RiSecurePaymentLine className='text-[100px] my-4'/>
+				<h1 className='font-bold text-xl my-2'>Top up your wallet</h1>
+				<p className='text-gray my-2'>enter topup amunt</p>
+				<form className='md:w-[80%] my-4' onSubmit={handlePayment} >
 					<div className='flex items-center justify-start mt-2'>
 						<input type="text"  className='w-[60px] h-[40px] p-2 font-bold' disabled value={`KES`}/>
 						<input type="number"
@@ -70,8 +72,9 @@ function Page() {
 				</form>
 			</div>
 			
-			<div className='shadow-md p-4 rounded-md dark:border dark:border-dSecondary'>
-				<h1 className='text-lg font-bold'>BALLANCE</h1>
+			<div className='shadow-md w-full h-full p-4 rounded-md dark:border dark:border-dSecondary flex flex-col md:items-center md:justify-center'>
+				<RiBankLine className='text-[100px] my-4'/>
+				<h1 className='text-lg font-bold'>ACCOUNT BALLANCE</h1>
 				<p className='text-lText dark:text-dText'>for more infor check your  dashboard</p>
 				{profileData?.plan_type ? <span className='text-[50px] font-bold md:text-[50px] text-primary my-10'>ksh. {basic.trimprice(Number(profileData?.plan_type))}</span>:<span className='text-[50px] mdtext-[200px] text-primary my-10'>0.00</span>}
 			</div>
