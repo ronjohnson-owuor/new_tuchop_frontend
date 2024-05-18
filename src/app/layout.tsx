@@ -18,6 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en"  suppressHydrationWarning ={true}>
       <head>
+        {/* adsense analytics tag */}
+        <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6391774391031351"
+     crossOrigin="anonymous"></Script>
+        {/* analytics tags for google analytics */}
             
       <Script async src="https://www.googletagmanager.com/gtag/js?id=G-XRB5GW3YVD"></Script>
       <Script>
