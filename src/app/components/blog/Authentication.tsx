@@ -1,8 +1,14 @@
-import { pinobjectInterface } from '@/interface/interface';
+import { pinResponse, pinobjectInterface } from '@/interface/interface';
+import { postObjectReturn } from '@/modules/endpoint';
 import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner';
 
-function Authentication() {
+
+interface props{
+    setSession:Function
+}
+
+function Authentication({setSession}:props) {
     const [pin,setPin] = useState<pinobjectInterface>({
         first:null,
         second:null,
@@ -31,8 +37,9 @@ function Authentication() {
 
 
     const validatePin = () =>{
-        // validate user pin
-        alert("your pin is : "+adminpin);
+        alert("initiated");
+        const res = postObjectReturn('pin-auth',true,{pin:adminpin}) as Promise<pinResponse>;
+        res.then(data =>data.data && setSession(data.data));
     }
 
     useEffect(()=>{

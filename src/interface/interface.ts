@@ -218,8 +218,15 @@ interface overviewData{
 	data:savedNotes[] | null
 }
 
+interface pinResponse{
+	message:string,
+	success:boolean,
+	data:boolean
+}
+
 export type {
 	TopicInterface,
+	pinResponse,
 	overviewData,
 	setterFormat2,
 	overview,
