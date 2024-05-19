@@ -42,6 +42,13 @@ interface saveLessonInterface{
 	topics_choosen: string,
 	date_created: string
   }
+
+  interface pinobjectInterface{
+	first:string|null,
+	second:string|null,
+	third:string|null,
+	fourth:string|null
+  }
   
 //   setter formart for the lessons page
  interface topic {
@@ -241,6 +248,7 @@ export type {
 	fileResponse,
 	videoMessage,
 	mediaobjectInterface,
-	paymentUrl
+	paymentUrl,
+	pinobjectInterface
 }
 
