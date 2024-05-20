@@ -1,4 +1,4 @@
-"use state"
+"use client"
 import React, { useState } from 'react'
 import { RiAddLine, RiEdit2Line } from 'react-icons/ri'
 import Createpost from './Createpost';

@@ -1,3 +1,4 @@
+"use client"
 import { pinResponse, pinobjectInterface } from '@/interface/interface';
 import { postObjectReturn } from '@/modules/endpoint';
 import React, { useEffect, useState } from 'react'
