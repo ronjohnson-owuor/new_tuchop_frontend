@@ -229,9 +229,9 @@ interface bloglist{
 	date:string,
 	heading:string,
 	thumbnail:string,
-	content:string,
+	id:number,
 	likes:number,
-	comment:object[]
+	comment:number
 }
 
 interface blogresponse{
