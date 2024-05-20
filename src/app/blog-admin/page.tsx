@@ -1,9 +1,28 @@
 "use client"
 import React, { useState } from 'react'
 import Navigation from '../components/navigation/Navigation'
-import Authentication from '../components/blog/Authentication'
 import { Toaster } from 'sonner'
-import Blogmenu from '../components/blog/Blogmenu'
+import dynamic from 'next/dynamic'
+
+
+
+// dynamically importing components
+const Authentication = dynamic(
+  () => {
+    return import('../components/blog/Authentication');
+  },
+  { ssr: false }
+);
+
+
+const Blogmenu = dynamic(
+  () => {
+    return import('../components/blog/Blogmenu');
+  },
+  { ssr: false }
+);
+
+
 
 function Page() {
   const[sessionactive,setsessionactive] = useState(false);
