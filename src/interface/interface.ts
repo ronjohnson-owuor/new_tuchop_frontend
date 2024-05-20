@@ -240,8 +240,22 @@ interface blogresponse{
 	data:bloglist[]
 }
 
+interface readblogdata{
+	thumbnail:string,
+	content:string,
+	likes:number,
+	comment:[]
+}
+interface readblog{
+	message:string,
+	success:boolean,
+	data:readblogdata
+}
+
 export type {
 	bloglist,
+	readblog,
+	readblogdata,
 	blogresponse,
 	TopicInterface,
 	pinResponse,

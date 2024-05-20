@@ -42,7 +42,7 @@ function Bloglist() {
                         <h3 className='text-md my-2 w-[95%]'>{blogSection.heading}</h3>
                         <span className='my-4'>📅 {blogSection.date}</span>
                         <div className='flex justify-start sm:justify-between my-4 flex-wrap gap-4 items-center' id="statistics">
-                            <Link href={`/blog/${redirect(blogSection.heading)}`}  className=' w-[100px] h-[40px] bg-lSecondary dark:bg-dSecondary text-gray rounded-md outline-none border-none dark:text-dText  hover:bg-primary'>read</Link>
+                            <Link href={`/blog/${redirect(blogSection.heading)}`}  className=' w-[100px] h-[40px] bg-lSecondary dark:bg-dSecondary text-gray rounded-md outline-none border-none dark:text-dText  hover:bg-primary flex items-center justify-center'>read</Link>
                             <div className='flex items-center justify-center gap-2'>
                                 <span className='flex items-center gap-4'>👍 &nbsp; {blogSection.likes} </span>
                                 <span className='flex items-center gap-4'><RiChat1Line/> &nbsp; {blogSection.comment} </span>
