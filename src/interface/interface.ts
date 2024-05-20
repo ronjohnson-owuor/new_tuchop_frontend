@@ -42,6 +42,13 @@ interface saveLessonInterface{
 	topics_choosen: string,
 	date_created: string
   }
+
+  interface pinobjectInterface{
+	first:string|null,
+	second:string|null,
+	third:string|null,
+	fourth:string|null
+  }
   
 //   setter formart for the lessons page
  interface topic {
@@ -211,8 +218,55 @@ interface overviewData{
 	data:savedNotes[] | null
 }
 
+interface pinResponse{
+	message:string,
+	success:boolean,
+	data:boolean
+}
+
+
+interface bloglist{
+	date:string,
+	heading:string,
+	thumbnail:string,
+	id:number,
+	likes:number,
+	comment:number
+}
+
+interface blogresponse{
+	message:string,
+	success:boolean,
+	data:bloglist[]
+}
+
+interface commentData{
+	picture:string|null,
+	date:string,
+	comment:string,
+	name:string
+}
+
+interface readblogdata{
+	thumbnail:string,
+	content:string,
+	likes:number,
+	id:number,
+	comment:commentData[]
+}
+interface readblog{
+	message:string,
+	success:boolean,
+	data:readblogdata
+}
+
 export type {
+	bloglist,
+	readblog,
+	readblogdata,
+	blogresponse,
 	TopicInterface,
+	pinResponse,
 	overviewData,
 	setterFormat2,
 	overview,
@@ -241,6 +295,7 @@ export type {
 	fileResponse,
 	videoMessage,
 	mediaobjectInterface,
-	paymentUrl
+	paymentUrl,
+	pinobjectInterface
 }
 

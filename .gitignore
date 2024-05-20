@@ -38,3 +38,6 @@ next-env.d.ts
 
 #placeholder file
 /src/_placeholder_
+
+#env variables
+.env
