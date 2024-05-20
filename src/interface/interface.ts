@@ -224,7 +224,25 @@ interface pinResponse{
 	data:boolean
 }
 
+
+interface bloglist{
+	date:string,
+	heading:string,
+	thumbnail:string,
+	content:string,
+	likes:number,
+	comment:object[]
+}
+
+interface blogresponse{
+	message:string,
+	success:boolean,
+	data:bloglist[]
+}
+
 export type {
+	bloglist,
+	blogresponse,
 	TopicInterface,
 	pinResponse,
 	overviewData,
