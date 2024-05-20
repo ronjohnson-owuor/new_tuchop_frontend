@@ -240,11 +240,19 @@ interface blogresponse{
 	data:bloglist[]
 }
 
+interface commentData{
+	picture:string|null,
+	date:string,
+	comment:string,
+	name:string
+}
+
 interface readblogdata{
 	thumbnail:string,
 	content:string,
 	likes:number,
-	comment:[]
+	id:number,
+	comment:commentData[]
 }
 interface readblog{
 	message:string,
