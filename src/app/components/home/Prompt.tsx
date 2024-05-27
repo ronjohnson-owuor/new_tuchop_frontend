@@ -9,6 +9,7 @@ import { TopicInterface, saveLessonInterface } from '@/interface/interface'
 import Basic from '@/modules/Basic'
 import { toast } from 'sonner'
 
+
 function Prompt() {
 	const [topics,setTopics] = useState<null|string[]>(null);
 	const [message,setMessage] = useState<null|string>(null);
