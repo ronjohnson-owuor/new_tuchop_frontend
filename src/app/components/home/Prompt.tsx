@@ -85,9 +85,10 @@ function Prompt() {
 	
 	
   return (
-	<div className='flex flex-col items-center justify-center min-h-[90dvh] my-[100px]'>
-		{topics == null && <div className='flex flex-col items-center justify-start sm:justify-center px-4'>
-		<h3 className='text-md sm:text-xl my-4'>what are you studying today?</h3>
+	<div className='flex flex-col items-center justify-center min-h-[90vh]'>
+		{topics == null && <div className='flex mt-10 flex-col items-center justify-center sm:justify-center px-4'>
+		<h3 className='text-md sm:text-xl bg-gradient-to-r text-center text-xl font-bold from-primary to-accent bg-clip-text text-transparent'>Enter the topic you want to study down below?</h3>
+		<span className='text-gray text-[13px] mb-10'>learn anything,anywhere with tuchop AI</span>
 		<div className='flex gap-2 w-full p-2'>
 			<input type="text"
 			onChange={(e)=>{
