@@ -87,6 +87,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 		priority: 0.8,
 	  },
 	  {
+		url: 'https://tuchop.com/start',
+		lastModified: new Date(),
+		changeFrequency: 'daily',
+		priority: 0.8,
+	  },
+	  {
 		url: 'https://tuchop.com/view-notes',
 		lastModified: new Date(),
 		changeFrequency: 'daily',

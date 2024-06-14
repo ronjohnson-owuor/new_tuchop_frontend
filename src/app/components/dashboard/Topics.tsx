@@ -2,10 +2,12 @@
 import { setterFormat2, topicStructure } from "@/interface/interface";
 import { useEffect, useState } from "react"
 import { postObjectNoReturn, postObjectReturn } from "@/modules/endpoint";
+import Basic from "@/modules/Basic";
 function Topics() {
 	const[response,setResponse] = useState<topicStructure[]>();
 	const[maximumPerpage, setmaximumPerpage] = useState(2);
 	const [continue_delete, setcontinue_delete] = useState(false);
+	const basic = new Basic();
 	const [delete_id, setdelete_id] = useState(0);
 	const[topicleft,settopicleft] = useState<string|number>(0);
 		const res = postObjectReturn("saved-topics", true, {lastIndex: maximumPerpage }) as Promise<setterFormat2>;
@@ -79,7 +81,7 @@ function Topics() {
 				</div>
 				<div className="flex flex-wrap gap-2">
 					<button onClick={() =>
-                      (window.location.href = `/lessonmodule/${lessons.topic_name}/${lessons.topic_id}`)
+                      (window.location.href = `/lesson-view?id=${basic.encodeUrl(lessons.topic_id)}`)
                     } className="bg-lSecondary dark:bg-dSecondary p-2 rounded-md text-sm hover:bg-primary hover:text-white">open</button>
 					<button className="bg-lSecondary dark:bg-dSecondary p-2 rounded-md text-sm hover:bg-primary hover:text-white" onClick={() =>
                       delete_topic(lessons.topic_name, lessons.topic_id)

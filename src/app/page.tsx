@@ -1,17 +1,20 @@
-import { Toaster } from "sonner";
-import Footer from "./components/footer/Footer";
-import Prompt from "./components/home/Prompt";
-import Navigation from "./components/navigation/Navigation";
+import React, { useEffect } from 'react'
+import Navigation from './components/landingPage/Navigation';
+import Hero from './components/landingPage/Hero';
+import Video from './components/landingPage/Video';
+import Features from './components/landingPage/Features';
+import Footer from './components/footer/Footer';
 
-const Page = () => {
-   return (
-     <div id="div_scroll" className="w-full min-h-screen bg-lBackground dark:text-dText dark:bg-dBackground overflow-x-clip">
-      <Toaster/>
-      <Navigation/>
-      <Prompt/>
-      <Footer/>
-    </div> 
-    );
-};
+function Page() {
+  return (
+    <div>
+        <Navigation/>
+        <Hero/>
+        <Video/>
+        <Features/>
+        <Footer/>
+    </div>
+  )
+}
 
 export default Page;

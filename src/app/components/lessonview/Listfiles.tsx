@@ -84,7 +84,7 @@ function Listfiles({topic_id,close,setmediafocus}:prop) {
 					</div>
 					 
 					 {/* when the user is  not renaming the subtopic */}
-					 <div className={` p-2 transition-all duration-200 ${renaming.isrenaming && renaming.index == index ? 'ml-[-500px] collapse' :'flex items-center justify-start gap-2 ml-[660px] visible w-full'}`}>
+					 <div className={` p-2transition-all duration-200 ${renaming.isrenaming && renaming.index == index ? 'ml-[-500px] collapse' :'flex items-center justify-start gap-2 visible w-full'}`}>
 					 <p title={file.media_name!}>{basic.trim(file.media_name!)}</p>
 					<div className='flex gap-4 items-center'>
 					 <button

@@ -1,5 +1,6 @@
 import { postObjectNoReturn } from '@/modules/endpoint';
 import React, { useState } from 'react'
+import { toast } from 'sonner';
 
 interface props {
 	topic_id:number,
@@ -47,7 +48,9 @@ function Uploadfiles({topic_id,subtopic_id}:props) {
 					formData.append('topic_id',topic_id.toString());
 					formData.append('subtopic_id',subtopic_id.toString());
 					const res = postObjectNoReturn('upload-file',true,formData);
-					res.then(data =>console.log(data));
+					res.then(data =>toast.info(data,
+						{className:"bg-primary text-dText"}
+					));
 			}else{
 				console.log('try choosing a file');
 			}
