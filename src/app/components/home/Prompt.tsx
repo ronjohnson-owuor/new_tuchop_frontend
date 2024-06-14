@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import { RiSendPlane2Line } from 'react-icons/ri'
-import { notes } from '../container'
+import { notes, swahili } from '../container'
 import Link from 'next/link'
 import { postObjectReturn } from '@/modules/endpoint'
 import { TopicInterface, saveLessonInterface } from '@/interface/interface'
@@ -100,13 +100,25 @@ function Prompt() {
 			 />
 			<button className='w-[30%] h-[40px] bg-primary outline-none flex items-center justify-center rounded-md hover:bg-accent' onClick={(e)=>fetchTopics()}><RiSendPlane2Line/>&nbsp;start</button>
 		</div>
-		<div className='my-[100px] flex flex-col border rounded-md border-lSecondary p-4 gap-2 dark:border-dSecondary'>
-			<Image width={50} height={50} alt='notes generator link' src={notes}/>
-			<span className='text-sm'>
-				try our <Link className='text-primary underline' href="/create-notes">notes generator</Link> 
-			</span>
+		
+		<div className='flex my-[100px] gap-4'>
 			
+			<div className='flex flex-col border rounded-md border-lSecondary p-4 gap-2 dark:border-dSecondary'>
+				<Image width={50} height={50} alt='notes generator link' src={notes}/>
+				<span className='text-sm'>
+					try our <Link className='text-primary underline' href="/create-notes">notes generator</Link> 
+				</span>
+				
+			</div>
+			<div className='flex flex-col border rounded-md border-lSecondary p-4 gap-2 dark:border-dSecondary'>
+				<Image width={50} height={50} alt='notes generator link' src={swahili}/>
+				<span className='text-sm'>
+					Learn swahili <Link className='text-primary underline' href="https://lingo.tuchop.com">here</Link> 
+				</span>
+				
+			</div>			
 		</div>
+
 		</div>}
 		
 		
