@@ -1,5 +1,4 @@
-
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navigation from './components/landingPage/Navigation';
 import Hero from './components/landingPage/Hero';
 import Video from './components/landingPage/Video';
