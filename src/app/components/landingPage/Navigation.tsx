@@ -8,9 +8,9 @@ import useToken from '@/modules/token';
 function Navigation() {
   const {isToken} = useToken();
   useEffect(()=>{
-    // if(isToken){
-    //   window.location.href="/start";
-    // }
+    if(isToken){
+      window.location.href="/start";
+    }
   },[isToken]);
 
   return (
