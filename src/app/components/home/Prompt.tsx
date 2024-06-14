@@ -103,7 +103,7 @@ function Prompt() {
 		<div className='my-[100px] flex flex-col border rounded-md border-lSecondary p-4 gap-2 dark:border-dSecondary'>
 			<Image width={50} height={50} alt='notes generator link' src={notes}/>
 			<span className='text-sm'>
-				try our <Link className='text-primary underline' href="#">notes generator</Link> 
+				try our <Link className='text-primary underline' href="/create-notes">notes generator</Link> 
 			</span>
 			
 		</div>
