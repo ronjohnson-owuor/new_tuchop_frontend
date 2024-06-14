@@ -4,6 +4,7 @@ import notes from "../../../public/notes.svg";
 import contactus from "../../../public/contactus.svg";
 import about from "../../../public/about.svg";
 import nohistory from "../../../public/nohistoryimage.svg";
+import hero_picture from "../../../public/hero_picture.svg";
 
 export {
 	logo,
@@ -11,5 +12,6 @@ export {
 	notes,
 	contactus,
 	about,
-	nohistory
+	nohistory,
+	hero_picture
 };
