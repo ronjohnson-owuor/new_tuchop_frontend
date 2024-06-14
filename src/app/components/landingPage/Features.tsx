@@ -8,7 +8,7 @@ function Features() {
         <h3 className='text-[30px] font-bold'>Our Features</h3>
     </div>
     {/* feature list box */}
-    <div className='w-[95%] grid grid-cols-4 gap-2'>
+    <div className='w-[95%] grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-2'>
         <div className=' rounded-md bg-lSecondary text-lText min-h-[100px] mx-4 flex items-center flex-col justify-center gap-4 p-4'>
             <RiRobot2Line className='text-[100px] text-primary'/>
             <h3 className='font-bold'>Ai assistant</h3>
