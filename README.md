@@ -8,4 +8,3 @@ If you need further assistance or help with my code feel free to contact me in u
 ===========================================
 created by: Ronjohnson omedo 💓
 email:ronjohnsonowuor83@gmail.com
-location:Kisumu,kenya
